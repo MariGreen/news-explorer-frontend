@@ -1,0 +1,10 @@
+.page {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+}
+
+ div, p, section, h1, h2, h3, li, ul, .footer, span {
+	border: 1px solid red;
+}
+
