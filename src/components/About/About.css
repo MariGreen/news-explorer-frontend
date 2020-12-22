@@ -1,0 +1,22 @@
+.about {
+  display: grid;
+  flex-shrink: 0;
+  grid-template-columns: 464px 1fr;
+  grid-column-gap: 56px;
+}
+
+.about__photo {
+  background-size: cover;
+  width: 464px;
+  height: 464px;
+  margin: 80px 56px 80px 0px;
+}
+
+.about__author {
+  display: grid;
+  grid-row-gap: 24px;
+}
+
+.section__title {
+  
+}

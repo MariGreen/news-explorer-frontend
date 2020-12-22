@@ -5,7 +5,7 @@ import faceBook from '../../images/footer_fb.png';
 
 function Footer() {
   return (
-    <div className="footer">
+    <div className="footer section page__footer">
       <p className="footer__copyright">&copy; 2020  Supersite, Powered by News API</p>
       <nav className="footer__nav">
       <ul className="footer__items">
