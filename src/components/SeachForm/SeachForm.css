@@ -1,0 +1,21 @@
+.seach-form__title {
+  font-family: 'Roboto Slab', "Palatino Linotype", "Book Antiqua", "Palatino", serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 60px;
+  line-height: 1.06;
+  color: #fff;
+  margin: 80px auto 32px;
+  text-align: left;
+}
+
+.seach-form__subtitle {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.37;
+  text-align: left;
+  color: #fff;
+
+}
