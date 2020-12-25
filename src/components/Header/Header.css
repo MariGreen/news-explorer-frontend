@@ -1,7 +1,7 @@
 .header {
   max-width: 100%;  
   max-height: 80px;
-  border-bottom: #fff 1px solid;
+  border-bottom: #C4C4C4 1px solid;
   background: rgba(196, 196, 196, 0.01);
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
   display: flex;
@@ -22,4 +22,16 @@
 
 .header__title_invert {
   color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    max-height: 66px; 
+ }
+}
+
+@media screen and (max-width: 767px) {
+  .header__title {
+    margin: 22px 0px 19px 40px; 
+ }
 }

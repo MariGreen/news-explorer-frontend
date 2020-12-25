@@ -1,4 +1,5 @@
 .seach-form {
+  flex-shrink: 0;
   background-image: url('../../images/seach_form.jpg');
   background-size: cover;
   background-position: center;
@@ -6,19 +7,19 @@
   display: flex;
   width: 100%;
   min-height: 576px;
-  margin-top: -100px;
-  
+  margin-top: -100px;  
   z-index: 0;
 }
 
-.seach-form__text {
+.seach-form__item {
   max-width: 608px;
   margin: 160px auto 80px;
   display: grid;
-  gap: 32px;
+  row-gap: 32px;
 }
 
 .seach-form__title {
+  grid-column: 1/4;
   font-family: 'Roboto Slab', "Palatino Linotype", "Book Antiqua", "Palatino", serif;
   font-style: normal;
   font-weight: normal;
@@ -30,26 +31,20 @@
 }
 
 .seach-form__subtitle {
+  grid-column: 1/4;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 1.37;
+  line-height: 1.33;
   text-align: left;
   color: #fff;
-  margin: 0px auto 32px;
-}
-
-.seach-form__item {
-  height: 64px;
-  display: grid;
-  /* grid-template-columns: 1fr 36%; */
-  
+  margin: 0;
 }
 
 .seach-form__input-field {
-  grid-column: 1/10;
-  grid-row: 1/1;
+  grid-column: 1/4;
+  grid-row: 4/4;
   border-radius: 100px;
   display: flex;
   padding: 21px 24px;
@@ -57,7 +52,9 @@
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 1.37;  
+  line-height: 1.37;
+  color: #fff;
+  border: #D1D2D6 solid 1px; 
 }
 
 .seach-form__input-field::placeholder {
@@ -70,12 +67,11 @@
   
 }
 
-
 .seach-form__submit {
-  grid-column: 8/10;
-  grid-row: 1/1;
+  grid-column: 3/4;
+  grid-row: 4/4;
   border-radius: 100px;
-  justify-self: stretch;
+  width: 168px;  
   z-index: 2;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -84,9 +80,53 @@
   line-height: 1.33;
   color: #fff;
   background-color: #2F71E5;  
-  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center; */
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);  
+} 
+
+/* Планшетник */
+
+@media screen and (max-width: 767px) {
+  .seach-form {
+    min-height: 400px;
+    margin-top: -66px; 
+ }
 }
+
+@media screen and (max-width: 767px) {
+  .seach-form__item {
+    max-width: 452px;
+    margin: 142px auto 48px;
+    /* grid-template-rows: fit-content; */
+    row-gap: 16px; 
+ }
+}
+
+@media screen and (max-width: 767px) {
+  .seach-form__title {
+    font-size: 36px;
+    line-height: 1.11;
+    max-width: 385px;
+ }
+}
+
+@media screen and (max-width: 767px) {
+  .seach-form__input-field {
+    grid-row: 5/5;
+    margin: 0; 
+ }
+}
+
+@media screen and (max-width: 767px) {
+  .seach-form__submit {
+    grid-row: 5/5;
+    width: 160px; 
+ }
+}
+
+@media screen and (max-width: 767px) {
+  .seach-form__input-field {
+    padding: 17px 24px; 
+ }
+}
+
+/* Мобильный */
