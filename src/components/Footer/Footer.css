@@ -1,20 +1,20 @@
 .footer {
   display: flex;
-  width: 100%;
+  width: calc(100% - 2*104px);
   justify-content: space-between;  
   align-items: center;
   flex-shrink: 0;
   flex-wrap: wrap;
-  margin: auto auto 0;
+  margin: auto 104px 19px;
 }
 
 .section {
   box-sizing: border-box;
 }
 
-.page__footer {
+/* .page__footer {
   width: 100%;
-}
+} */
 
 .footer__nav {
   margin: 0;

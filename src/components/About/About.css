@@ -3,6 +3,7 @@
     flex-shrink: 0;
     grid-template-columns: 464px 1fr;
     grid-column-gap: 56px;
+    margin: 0px 104px 0px;
 }
 
 .about__profile {
