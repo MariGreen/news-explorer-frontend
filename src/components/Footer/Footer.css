@@ -74,7 +74,7 @@ margin: 0 auto ;
 
 /* Планшетник */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .footer {
     width: calc(100% - 2*40px);
     margin: auto 40px 18px;
@@ -82,8 +82,36 @@ margin: 0 auto ;
  }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .footer__item {
     margin-left: 18px;
+ }
+}
+
+/* Мобильный */
+
+@media screen and (max-width: 425px) {
+  .footer {
+    width: calc(100% - 2*16px);
+    margin: auto 16px 22px;
+    flex-direction: column;
+    align-items: center;
+ }
+}
+
+@media screen and (max-width: 425px) {
+  .footer__nav {
+    width: calc(100% - 2*16px);
+    display: flex;
+    margin: auto 16px 22px;
+    flex-direction: column;
+    flex-wrap: wrap;
+ }
+}
+
+@media screen and (max-width: 425px) {
+  .footer__items {    
+    flex-direction: column;
+    flex-wrap: wrap;
  }
 }

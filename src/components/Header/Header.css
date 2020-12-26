@@ -24,14 +24,32 @@
   color: #fff;
 }
 
-@media screen and (max-width: 767px) {
+/* Планшетник */
+
+@media screen and (max-width: 768px) {
   .header {
     max-height: 66px; 
  }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .header__title {
     margin: 22px 0px 19px 40px; 
+ }
+}
+
+/* Мобильный */
+
+@media screen and (max-width: 425px) {
+  .header {
+    max-height: 56px;    
+ }
+}
+
+@media screen and (max-width: 425px) {
+  .header__title {    
+    margin: 16px 0px 16px 16px;
+    font-size: 16px;
+    line-height: 1.5; 
  }
 }
