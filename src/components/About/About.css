@@ -1,9 +1,8 @@
 .about {
     display: grid;
     flex-shrink: 0;
-    max-width: 1440px;
-    min-width: 1120px;
-    grid-template-columns: 464px 1fr;
+    max-width: 1440px;    
+    grid-template-columns: 464px 1fr;    
     grid-column-gap: 56px;
     margin: 0px 104px 0px;
 }
@@ -27,7 +26,7 @@
 .about__author {
     display: grid;
     grid-row-gap: 24px;
-    grid-template-rows: max-content;
+    grid-template-rows: max-content;    
 }
 
 .section__title {
@@ -50,11 +49,26 @@
     margin: 0px 0px 24px;
 }
 
+@media screen and (max-width: 1224px) {
+    .about {
+        grid-template-columns: 343px 1fr;    
+        grid-column-gap: 45px;        
+   }
+}
+
+@media screen and (max-width: 1224px) {
+    .about__profile {
+        width: 343px;
+        height: 343px;        
+   }
+}
+
+
 /* Планшетник */
 
 @media screen and (max-width: 768px) {
     .about {
-        max-width: 688px;
+        /* max-width: 688px; */
         min-width: calc(100% - 2*40px);
         grid-template-columns: 232px 1fr;
         grid-column-gap: 32px;
@@ -89,6 +103,7 @@
 @media screen and (max-width: 768px) {
     .section__author {
         grid-row-gap: 16px;
+        grid-auto-rows: minmax(min-content, max-content);
    }
 }
 

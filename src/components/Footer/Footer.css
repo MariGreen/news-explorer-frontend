@@ -88,30 +88,50 @@ margin: 0 auto ;
  }
 }
 
-/* Мобильный */
+/* Мобильный  убрать отступы обратно до 16!!!*/
 
 @media screen and (max-width: 425px) {
   .footer {
-    width: calc(100% - 2*16px);
-    margin: auto 16px 22px;
-    flex-direction: column;
-    align-items: center;
+    width: calc(100% - 2*15px);
+    margin: auto 15px 22px;
+    flex-direction: column-reverse;
+    align-items: center;    
  }
 }
 
 @media screen and (max-width: 425px) {
   .footer__nav {
-    width: calc(100% - 2*16px);
-    display: flex;
-    margin: auto 16px 22px;
-    flex-direction: column;
-    flex-wrap: wrap;
+    width: 100%;
+    display: flex;   
  }
 }
 
 @media screen and (max-width: 425px) {
   .footer__items {    
-    flex-direction: column;
+    flex-flow: row wrap;    
+    width: 100%;    
+    justify-content: space-between;
+       
+ }
+}
+
+@media screen and (max-width: 425px) {
+  .footer__item {    
+    flex-direction: row;    
     flex-wrap: wrap;
+    margin: 0px 0px 38px;    
+ }
+}
+
+@media screen and (max-width: 425px) {
+  .footer__item_icon {    
+    order: -1;
+    /* align-self: stretch;     */
+ }
+}
+
+@media screen and (max-width: 425px) {
+  .footer__item_glavn {    
+    order: -2;    
  }
 }
