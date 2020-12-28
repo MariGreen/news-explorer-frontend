@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css';
+import './Footer1.css';
 import gitHub from '../../images/footer_github.png';
 import faceBook from '../../images/footer_fb.png';
 

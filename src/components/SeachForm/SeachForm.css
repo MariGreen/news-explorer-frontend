@@ -94,9 +94,9 @@
 
 @media screen and (max-width: 768px) {
   .seach-form__item {
-    max-width: calc(100% - 2*16px);
-    margin: 142px auto 48px;
-    /* grid-template-rows: fit-content; */
+    max-width: 452px;
+    width: calc(100% - 2*40px);
+    margin: 142px auto 48px;    
     row-gap: 16px; 
  }
 }
