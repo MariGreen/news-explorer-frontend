@@ -141,7 +141,7 @@
 
 @media screen and (max-width: 425px) {
   .seach-form__item {
-    max-width: calc(100% - 2*16px);
+    width: calc(100% - 2*16px);
     margin: 86px auto 32px;    
     row-gap: 16px; 
  }

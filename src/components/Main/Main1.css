@@ -1,0 +1,122 @@
+.content {
+  width: 100%;
+  background-color: #F5F6F7;
+  display: flex;  
+}
+
+.result {
+  width: calc(100% - 2*140px);  
+  margin: 80px auto;
+  display: grid;
+  flex-direction: column;
+  align-items: left;
+  grid-template-columns: min-content;  
+}
+
+.result__title {
+  font-family: 'Roboto Slab', "Palatino Linotype", "Book Antiqua", "Palatino", serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 1.15;
+  text-align: left;
+  margin: 0px 0px 64px;
+    
+}
+
+.result__show-results {
+  width: 1232px;  
+  display: grid;    
+  grid-template-columns: repeat(auto-fill, 400px);
+  grid-gap: 16px 16px;
+}
+
+.result__cards-imitation {
+  max-width: 400px;
+  height: 576px;
+  background-color: tomato;
+}
+
+.result__show-button {
+  width: 200px;
+  height: 100px;
+  background-color: teal;
+  justify-items: center;
+
+}
+
+
+/* Планшет */
+
+
+@media screen and (max-width: 1312px) {
+  .result {    
+    /* padding: 40px 40px;            */
+    width: calc(100% - 2*40px);
+ }
+}
+
+@media screen and (max-width: 1312px) {
+  .result__show-results {
+    width: 688px;        
+    grid-template-columns: repeat(auto-fill, 224px);
+    grid-gap: 8px 8px;
+}
+}
+
+@media screen and (max-width: 1312px) {
+  .result__cards-imitation {
+    width: 224px;
+    height: 420px;
+  }
+}
+
+/* Среднее */
+
+@media screen and (max-width: 760px) {
+  .result {    
+    width: calc(100% - 2*16px);
+    
+ }
+}
+
+@media screen and (max-width: 760px) {
+  .result__show-results {    
+    width: 464px;          
+    grid-template-columns: repeat(auto-fill, 224px);
+    grid-gap: 16px;
+}
+}
+@media screen and (max-width: 760px) {
+  .result__cards-imitation {
+    width: 224px;
+    height: 440px;
+  }
+}
+
+
+
+
+/* Мобильный */
+
+@media screen and (max-width: 530px) {
+  .result {
+    width: calc(100% - 2*16px);
+ }
+}
+
+@media screen and (max-width: 530px) {
+  .result__cards-imitation {
+    width: 288px;
+    height: 440px;
+  }
+}
+
+
+@media screen and (max-width: 530px) {
+  .result__show-results {    
+    width: 288px;          
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+}
+}
