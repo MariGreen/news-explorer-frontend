@@ -1,6 +1,8 @@
 import React from 'react';
 /* import Card from './Card';
 import Loader from './Loader'; */
+import { news } from '../../constants/cards';
+import picture from '../../images/cards_image_08.jpg'
 import './Main.css';
 import '../NewsCard/NewsCard.css';
 
@@ -8,14 +10,22 @@ function Main(props) {
   /* const currentUser = React.useContext(CurrentUserContext);
   const initialLoading = React.useContext(InitialLoadingContext);   */
 
-  const { news } = props;
+  // const { news } = props;
+
+  // function handleTrashClick() {
+  //   props.onTrashClick(props.news);
+  // }
+
+  // function handleAdviceClick() {
+  //   props.onTrashClick(props.news);
+  // }
 
   function handleTrashClick() {
-    props.onTrashClick(props.news);
+    props.onTrashClick(news);
   }
 
   function handleAdviceClick() {
-    props.onTrashClick(props.news);
+    props.onTrashClick(news);
   }
 
   const isSaved = true;
@@ -29,14 +39,16 @@ function Main(props) {
             <div className="result__cards-imitation"></div>
             {/* // */}
             <div className="news-card">
-              <img alt={news.name} className="news-card__picture" src={news.link} />
+              <img alt={news.title} className="news-card__picture" src={picture}
+              // src={news.urlToImage}
+              />
               <div className="news-card__data">
                 <div className="news-card__header">
                   {isSaved && <button type="submit" className="news-card__key-word" >Природа</button>}
-                  {isSaved && <button type="submit" className="news-card__hint" onClick={handleAdviceClick}>Убрать из сохранеённых</button>}
+                  {isSaved && <button type="submit" className="news-card__hint" onClick={handleAdviceClick}>Убрать из сохранённых</button>}
                   {isSaved && <button type="submit" className="news-card__trash" onClick={handleTrashClick}></button>}
                 </div>
-                <p className="news-card__date">{news.publishAt}</p>
+                <p className="news-card__date">{news.publishedAt}</p>
 
               </div>
             </div>
