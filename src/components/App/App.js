@@ -13,7 +13,7 @@ function App() {
       <SeachForm />
       <Main />
       <About />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

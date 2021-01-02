@@ -24,8 +24,8 @@ function Main(props) {
     props.onTrashClick(news);
   }
 
-  function handleAdviceClick() {
-    props.onTrashClick(news);
+  function handleHintClick() {
+    props.onHintClick(news);
   }
 
   const isSaved = true;
@@ -39,18 +39,27 @@ function Main(props) {
             <div className="result__cards-imitation"></div>
             {/* // */}
             <div className="news-card">
+              <div className="news-card__header">
+                {isSaved && <button type="submit" className="news-card__key-word" >Природа</button>}
+                {isSaved && <button type="submit" className="news-card__hint" onClick={handleHintClick}>Убрать из сохранённых</button>}
+                {isSaved && <button type="submit" className="news-card__trash" onClick={handleTrashClick}></button>}
+              </div>
               <img alt={news.title} className="news-card__picture" src={picture}
               // src={news.urlToImage}
               />
               <div className="news-card__data">
-                <div className="news-card__header">
-                  {isSaved && <button type="submit" className="news-card__key-word" >Природа</button>}
-                  {isSaved && <button type="submit" className="news-card__hint" onClick={handleAdviceClick}>Убрать из сохранённых</button>}
-                  {isSaved && <button type="submit" className="news-card__trash" onClick={handleTrashClick}></button>}
-                </div>
-                <p className="news-card__date">{news.publishedAt}</p>
-
+                <p className="news-card__date"> 1 января, 2021
+                  {/* {news.publishedAt} */}
+                </p>
+                <h3 className="news-card__title">Национальное достояние&nbsp;&mdash; парки
+                {/* {news.title} */}
+                </h3>
+                <p className="news-card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков&nbsp;&mdash; охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
+                {/* {news.desctiption} */}
               </div>
+              <h4 className="news-card__source">Дзен
+                {/* {news.source} */}
+              </h4>
             </div>
             {/* // */}
             <div className="result__cards-imitation"></div>
