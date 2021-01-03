@@ -5,7 +5,7 @@
 }
 
 .result {
-  width: calc(100% - 2*140px);  
+  width: calc(100% - 2*104px);  
   margin: 80px auto;
   display: flex;
   flex-direction: column;

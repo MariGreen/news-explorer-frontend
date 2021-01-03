@@ -37,7 +37,7 @@
   position: relative;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  /* justify-content: center; */
   box-sizing: border-box;
   padding: 34px 36px 28px;
 } 
@@ -71,12 +71,20 @@
 
 
 .popup__title {
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: 'Roboto 900', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.16;
   margin: 0px 0px 22px;
+}
+
+@media screen and (max-width: 400px) {
+  .popup {
+    background-color: rgba(0, 0, 0, 0.1);
+    top: 103px;
+    left: 0;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -87,20 +95,9 @@
 
 @media screen and (max-width: 400px) {
   .popup__form-container {
-    max-width: 430px;
     width: 100%;
     min-height: 560px;
-    /* min-width: 320px; */
-    background-color: #fff;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 16px;
-    z-index: 101;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: start;
-    box-sizing: border-box;
+    min-width: 320px;    
     padding: 16px;
   } 
 }

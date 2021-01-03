@@ -5,14 +5,21 @@ import Main from '../Main/Main';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
 import LoginPopup from '../LoginPopup/LoginPopup';
+import RegisterPopup from '../RegisterPopup/RegisterPopup';
+import ResultPopup from '../ResultPopup/ResultPopup';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import './App.css';
 
 function App() {
 
-  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(true);
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
+  const [isResultPopupOpen, setIsResultPopupOpen] = useState(false);
 
   function closeAllPopups() {
     setIsLoginPopupOpen(false);
+    setIsRegisterPopupOpen(false);
+    setIsResultPopupOpen(false);
   }
 
   useEffect(() => {
@@ -43,6 +50,7 @@ function App() {
       <Header />
       <SeachForm />
       <Main />
+      <SavedNewsHeader />
       <About />
       <Footer />
 
@@ -52,16 +60,16 @@ function App() {
           onClose={closeAllPopups}
         />
 
-        {/* <RegisterPopup
-          isOpen={isEditProfilePopupOpen}
+        <RegisterPopup
+          isOpen={isRegisterPopupOpen}
           onClose={closeAllPopups}
-          onUpdateUser={handleUpdateUser}
+
         />
 
-        <InfoTooltip
-          isOpen={isInfoTooltipOpen}
+        < ResultPopup
+          isOpen={isResultPopupOpen}
           onClose={closeAllPopups}
-          mess={message} /> */}
+        />
       </section>
     </div>
   );

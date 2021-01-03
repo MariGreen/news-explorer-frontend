@@ -48,7 +48,7 @@
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 1.21;;
+  line-height: 1.21;
   color: #000;
   opacity: 0.2;
   
@@ -65,7 +65,8 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 1.25;
-  color: red;
+  /* color: red; */
+  color:rgb(255, 255, 255);
   top: 60px;
   left: 0;
 }
@@ -123,12 +124,9 @@
 
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 450px) {
   .popup__save-button {
-    min-height: 40px;
-    font-size: 14px;
-    line-height: 1.21;
-    border-radius: 2px;
+    margin: 0;
   }
 }
 
@@ -137,9 +135,16 @@
   .popup__form-item {
     font-size: 12px;
     line-height: 1.25;
-    margin: 36px 0px 0px;
+    margin: 0;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .popup__form-element {    
+    margin: 0px auto 10px;
+  }
+}
+
 
 .auth {
   max-width: 358px;
