@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import './ResultPopup.css';
 
@@ -23,6 +24,11 @@ function ResultPopup(props) {
       </div>
     </PopupWithForm>
   );
+}
+
+ResultPopup.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default ResultPopup;

@@ -8,6 +8,7 @@ import LoginPopup from '../LoginPopup/LoginPopup';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import ResultPopup from '../ResultPopup/ResultPopup';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import NothingFound from '../NothingFound/NothingFound';
 import './App.css';
 
 function App() {
@@ -15,6 +16,18 @@ function App() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
   const [isResultPopupOpen, setIsResultPopupOpen] = useState(false);
+
+  const [loggedIn, setLoggedIn] = useState(true);
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const user = { name: "Грета Гарбо", email: "email@email.de" };
+
+  function handleLoginClick() {
+    setIsLoginPopupOpen(true);
+  }
+
+  function handleLogOutClick() {
+    setLoggedIn(false);
+  }
 
   function closeAllPopups() {
     setIsLoginPopupOpen(false);
@@ -47,11 +60,12 @@ function App() {
 
   return (
     <div className="page page__container">
-      <Header />
+      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} />
       <SeachForm />
       <Main />
       <SavedNewsHeader />
       <About />
+      <NothingFound />
       <Footer />
 
       <section className="popups">
@@ -76,3 +90,16 @@ function App() {
 }
 
 export default App;
+
+// function Component({ onClick, onChange, value, children }) {
+//   // ...
+// }
+
+// Component.propTypes = {
+//   onClick: PropTypes.func.isRequired,
+//   onChange: PropTypes.func.isRequired,
+//   value: PropTypes.string,
+//   children: PropTypes.node,
+// }
+
+// export default Component; 

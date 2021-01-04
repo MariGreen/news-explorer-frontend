@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import './RegisterPopup.css';
 
@@ -103,6 +104,11 @@ function RegisterPopup(props) {
       </div>
     </PopupWithForm>
   );
+}
+
+RegisterPopup.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default RegisterPopup;

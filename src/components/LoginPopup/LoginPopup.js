@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import '../LoginPopup/LoginPopup.css';
 // import { LoadingContext } from '../contexts/LoadingContext';
@@ -83,6 +84,11 @@ function LoginPopup(props) {
       </div>
     </PopupWithForm>
   );
+}
+
+LoginPopup.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default LoginPopup;
