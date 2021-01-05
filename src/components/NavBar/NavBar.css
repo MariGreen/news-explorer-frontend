@@ -1,9 +1,10 @@
 .header__navbar {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   /* align-items: center; */
   margin-right: 104px;
+  height: 80px;
 }
 
 .header__nav{  
@@ -13,6 +14,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 100%;
 }
 
 .header__item {  
@@ -25,7 +27,14 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 1.33;
-  
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;   
+}
+
+.header__item_underline {
+  border-bottom: 3px solid;
 }
 
 .header__button {
@@ -53,19 +62,11 @@
 
 
 .header__link {
-  font-family: "Inter", "Arial", "Helvetica", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.22;  
-  background-color: transparent;
-  display: inline-block;
-  margin-left: 24px;
-  color: #FFF;  
+  text-decoration: none;  
 }
 
 .header__link:hover {
-  cursor: pointer;
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
   opacity: 0.6;
 }
 

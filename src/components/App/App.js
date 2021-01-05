@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import SeachForm from '../SeachForm/SeachForm';
 import Main from '../Main/Main';
@@ -17,9 +18,10 @@ function App() {
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
   const [isResultPopupOpen, setIsResultPopupOpen] = useState(false);
 
+  // const [loggedIn, setLoggedIn] = useState(true);
   const [loggedIn, setLoggedIn] = useState(true);
-  // const [loggedIn, setLoggedIn] = useState(false);
   const user = { name: "Грета Гарбо", email: "email@email.de" };
+  const myPath = useLocation();
 
   function handleLoginClick() {
     setIsLoginPopupOpen(true);
@@ -28,6 +30,18 @@ function App() {
   function handleLogOutClick() {
     setLoggedIn(false);
   }
+
+  function handleSwitchToRegister() {
+    setIsLoginPopupOpen(false);
+    setIsRegisterPopupOpen(true);
+  };
+
+  function handleSwitchToLogin() {
+    setIsRegisterPopupOpen(false);
+    setIsLoginPopupOpen(true);
+  };
+
+
 
   function closeAllPopups() {
     setIsLoginPopupOpen(false);
@@ -60,24 +74,37 @@ function App() {
 
   return (
     <div className="page page__container">
-      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} />
-      <SeachForm />
-      <Main />
-      <SavedNewsHeader />
-      <About />
-      <NothingFound />
+      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} />
+
+      <Switch>
+
+        <Route path='/saved-news'>
+          <SavedNewsHeader />
+          <Main />
+          <NothingFound />
+        </Route>
+
+        <Route path='/'>
+          <SeachForm />
+          <Main />
+          <About />
+        </Route>
+
+      </Switch>
+
       <Footer />
 
       <section className="popups">
         <LoginPopup
           isOpen={isLoginPopupOpen}
           onClose={closeAllPopups}
+          onRegisterClick={handleSwitchToRegister}
         />
 
         <RegisterPopup
           isOpen={isRegisterPopupOpen}
           onClose={closeAllPopups}
-
+          onLoginClick={handleSwitchToLogin}
         />
 
         < ResultPopup

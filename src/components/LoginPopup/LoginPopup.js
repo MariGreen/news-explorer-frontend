@@ -41,9 +41,9 @@ function LoginPopup(props) {
     >
       <fieldset className="popup__form-item">
         <div className="popup__form-element">
-          <label htmlFor="email-input" className="popup__form-element-label">Email</label>
+          <label htmlFor="email" className="popup__form-element-label">Email</label>
           <input
-            id="email-input"
+            id="email"
             type="email"
             name="email"
             className="popup__form-item-field popup__form-item-field_email"
@@ -59,9 +59,9 @@ function LoginPopup(props) {
         </div>
 
         <div className="popup__form-element">
-          <label htmlFor="password-input" className="popup__form-element-label">Пароль</label>
+          <label htmlFor="password" className="popup__form-element-label">Пароль</label>
           <input
-            id="password-input"
+            id="password"
             type="password"
             name="password"
             className="popup__form-item-field popup__form-item-field_password"
@@ -79,7 +79,7 @@ function LoginPopup(props) {
         {/* {loading ? `Сохранение...` : `Создать`} */} Войти
       </button>
       <div className='auth__signup'>
-        <p className='auth__form-item'>или Зарегистрироваться</p>
+        <p className='auth__form-item'>или <span onClick={props.onRegisterClick}>Зарегистрироваться</span></p>
         {/* <Link to='/sign-up' className='auth__form-item auth__form-item_link'>Регистрация</Link> */}
       </div>
     </PopupWithForm>

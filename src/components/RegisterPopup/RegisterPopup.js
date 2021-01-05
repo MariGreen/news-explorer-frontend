@@ -99,7 +99,7 @@ function RegisterPopup(props) {
         {/* {loading ? `Сохранение...` : `Создать`} */} Зарегистрироваться
       </button>
       <div className='auth__signup'>
-        <p className='auth__form-item'>или Войти</p>
+        <p className='auth__form-item'>или <span onClick={props.onLoginClick}>Войти </span></p>
         {/* <Link to='/sign-up' className='auth__form-item auth__form-item_link'>Регистрация</Link> */}
       </div>
     </PopupWithForm>
