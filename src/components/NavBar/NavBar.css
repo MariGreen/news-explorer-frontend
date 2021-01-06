@@ -19,9 +19,9 @@
 
 .header__item {  
   margin-left: 0;
-  margin-right: 32px;
+  margin-left: 32px;
   list-style-type: none;
-  color:blueviolet;
+  color: #fff;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -38,7 +38,8 @@
 }
 
 .header__button {
-  border: 1px solid blueviolet;
+  border: 1px solid #fff;
+  background-color: transparent;
   box-sizing: border-box;
   border-radius: 100px;
   /* width: 112px; */
@@ -46,7 +47,7 @@
   height: 48px;
   padding: 12px 15px;
   align-items: center;
-  color:blueviolet;
+  color:#fff;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -74,5 +75,36 @@
   color:#A9A9A9;
 }
 
+/* Планшетник */
+
+@media screen and (max-width: 768px) {
+  .header__navbar {
+    max-height: 66px;
+    margin-right: 40px; 
+ }
+}
+
+@media screen and (max-width: 768px) {
+  .header__item {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-left: 16px;
+ }
+}
+
+@media screen and (max-width: 768px) {
+  .header__button {
+    font-size: 16px;
+    line-height: 1.5;    
+    padding: 8px 15px;
+ }
+}
 
 
+/* Мобильный */
+
+@media screen and (max-width: 425px) {
+  .header__navbar {
+    max-height: 56px;    
+ }
+}

@@ -9,7 +9,8 @@ import LoginPopup from '../LoginPopup/LoginPopup';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import ResultPopup from '../ResultPopup/ResultPopup';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
-import NothingFound from '../NothingFound/NothingFound';
+// import NothingFound from '../NothingFound/NothingFound';
+import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
 
 function App() {
@@ -80,13 +81,13 @@ function App() {
 
         <Route path='/saved-news'>
           <SavedNewsHeader />
-          <Main />
-          <NothingFound />
+          <SavedNews myPath={myPath} />
         </Route>
 
         <Route path='/'>
           <SeachForm />
-          <Main />
+          {/* <NothingFound /> */}
+          <Main myPath={myPath} />
           <About />
         </Route>
 

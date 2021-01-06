@@ -55,9 +55,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.71;
-  display: flex;
-  align-items: center;
+  line-height: 1.71;  
   text-align: center;
   padding: 8px 12px;
   color: #000;  
@@ -68,38 +66,8 @@
   
 }
 
-.news-card__hint {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  width: 159px;
-  height: 40px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 10px 22px rgba(59, 74, 116, 0.1);
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.16;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  padding: 16px 0px 17px 0px;
-  color: #000;
-  position: absolute;
-  top: 0;
-  right: 45px;  
-}
 
-.news-card__hint:hover {
-  cursor: Url('../../images/coursor_pointer.svg'), pointer;
-  
-}
-
-.news-card__trash {
+.news-card__icon {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -107,8 +75,7 @@
   width: 40px;
   height: 40px;
   padding: 11px;
-  background-color: #fff;
-  background-image: url(../../images/news_trash.svg);
+  background-color: #fff;  
   background-size: 24px 24px;
   background-repeat: no-repeat;
   background-position: center;
@@ -117,19 +84,18 @@
   /* position: absolute;
   right: 15px;
   top: 18px; */
-  
 
 }
 
-/* .news-card__trash::after {
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  opacity: 0.6;
-  cursor: crosshair;
-} */
+.news-card__icon_trash {
+  background-image: url(../../images/news_trash.svg);
+}
 
-.news-card__trash::before {
+.news-card__icon_mark {
+  background-image: url(../../images/news_bookmark.svg);
+}
+
+.news-card__icon::before {
   content: "";
   display: block;
   position: absolute;
@@ -143,12 +109,12 @@
   opacity: 0.5;  
 }
 
-.news-card__trash:hover {
+.news-card__icon:hover {
   cursor: Url('../../images/coursor_pointer.svg'), pointer;
   
 }
 
-.news-card__trash:hover::before {
+.news-card__icon:hover::before {
   visibility: collapse;  
   transition: height 0ms 0ms, opacity 600ms 0ms;
 } 
@@ -200,6 +166,8 @@
   bottom: 24px;
   left: 24px;
 }
+
+
 
 /* Планшетник */
 
