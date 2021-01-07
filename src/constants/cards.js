@@ -48,6 +48,7 @@ const news = [
     keyWord: 'Природа'
   },
 
+
 ];
 
 export { news };

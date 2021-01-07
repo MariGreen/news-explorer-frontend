@@ -66,6 +66,10 @@
   text-decoration: none;  
 }
 
+.header__link:visited {
+  color:#fff;  
+}
+
 .header__link:hover {
   cursor: Url('../../images/coursor_pointer.svg'), pointer;
   opacity: 0.6;
@@ -77,14 +81,14 @@
 
 /* Планшетник */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 700px) {
   .header__navbar {
     max-height: 66px;
     margin-right: 40px; 
  }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 700px) {
   .header__item {
     font-size: 16px;
     line-height: 1.5;
@@ -92,19 +96,24 @@
  }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 700px){
   .header__button {
     font-size: 16px;
     line-height: 1.5;    
     padding: 8px 15px;
+    border: none;
  }
 }
 
 
 /* Мобильный */
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 699px) {
   .header__navbar {
-    max-height: 56px;    
+   visibility: collapse;    
  }
 }
+
+
+
+

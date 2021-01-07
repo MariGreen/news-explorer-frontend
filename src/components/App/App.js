@@ -9,6 +9,7 @@ import LoginPopup from '../LoginPopup/LoginPopup';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import ResultPopup from '../ResultPopup/ResultPopup';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import MenuPopup from '../MenuPopup/MenuPopup';
 // import NothingFound from '../NothingFound/NothingFound';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
@@ -18,8 +19,8 @@ function App() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
   const [isResultPopupOpen, setIsResultPopupOpen] = useState(false);
+  const [isMenuPopupOpen, setIsMenuPopupOpen] = useState(false);
 
-  // const [loggedIn, setLoggedIn] = useState(true);
   const [loggedIn, setLoggedIn] = useState(true);
   const user = { name: "Грета Гарбо", email: "email@email.de" };
   const myPath = useLocation();
@@ -32,22 +33,26 @@ function App() {
     setLoggedIn(false);
   }
 
-  function handleSwitchToRegister() {
-    setIsLoginPopupOpen(false);
-    setIsRegisterPopupOpen(true);
-  };
-
   function handleSwitchToLogin() {
-    setIsRegisterPopupOpen(false);
     setIsLoginPopupOpen(true);
+    setIsMenuPopupOpen(false);
   };
 
 
+  function handleSwitchPopups() {
+    setIsRegisterPopupOpen(!isRegisterPopupOpen);
+    setIsLoginPopupOpen(!isLoginPopupOpen);
+  };
+
+  function onMenuOpen() {
+    setIsMenuPopupOpen(true);
+  }
 
   function closeAllPopups() {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
     setIsResultPopupOpen(false);
+    setIsMenuPopupOpen(false);
   }
 
   useEffect(() => {
@@ -75,19 +80,19 @@ function App() {
 
   return (
     <div className="page page__container">
-      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} />
+      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} onMenuOpen={onMenuOpen} />
 
       <Switch>
 
         <Route path='/saved-news'>
           <SavedNewsHeader />
-          <SavedNews myPath={myPath} />
+          <SavedNews myPath={myPath} isLoggedIn={loggedIn} />
         </Route>
 
         <Route path='/'>
           <SeachForm />
           {/* <NothingFound /> */}
-          <Main myPath={myPath} />
+          <Main myPath={myPath} isLoggedIn={loggedIn} />
           <About />
         </Route>
 
@@ -99,19 +104,25 @@ function App() {
         <LoginPopup
           isOpen={isLoginPopupOpen}
           onClose={closeAllPopups}
-          onRegisterClick={handleSwitchToRegister}
+          onRegisterClick={handleSwitchPopups}
         />
 
         <RegisterPopup
           isOpen={isRegisterPopupOpen}
           onClose={closeAllPopups}
-          onLoginClick={handleSwitchToLogin}
+          onLoginClick={handleSwitchPopups}
         />
 
         < ResultPopup
           isOpen={isResultPopupOpen}
           onClose={closeAllPopups}
         />
+
+        <MenuPopup
+          isOpen={isMenuPopupOpen}
+          onClose={closeAllPopups}
+          onAuthClick={handleSwitchToLogin}>
+        </MenuPopup>
       </section>
     </div>
   );

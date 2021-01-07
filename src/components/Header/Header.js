@@ -10,20 +10,7 @@ function Header(props) {
     <header className='header'>
       <Link to='/' className='header__title header__title_invert'>NewsExplorer</Link>
       <Navbar loggedIn={props.loggedIn} userName={props.userName} onLoginClick={props.onLoginClick} onSignOut={props.onSignOut} myPath={props.myPath} />
-
-
-      {/* <Switch>
-        <ProtectedRoute exact path='/' component={Navbar} loggedIn={props.loggedIn} buttonText='Выйти' buttonLink='' email={props.email} onSignOut={props.onSignOut} />
-
-        <Route path='/sign-in' >
-          <Navbar loggedIn={props.loggedIn} buttonText='Регистрация' buttonLink='/sign-up' email={props.email} onSignOut={props.onSignOut} />
-        </Route>
-
-        <Route path='/sign-up' >
-          <Navbar loggedIn={props.loggedIn} buttonText='Войти' buttonLink='/sign-in' email={props.email} onSignOut={props.onSignOut} />
-        </Route>
-        <p className='header__link'>Войти</p>
-      </Switch> */}
+      <button type="button" className="header__menu-button" onClick={props.onMenuOpen}></button>
     </header>
   )
 }

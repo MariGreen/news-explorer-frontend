@@ -5,8 +5,7 @@ import './SavedNews.css';
 
 function SavedNews(props) {
 
-  const isSaved = true;
-  const isFound = false;
+
 
   return (
     <div className="content">
@@ -15,7 +14,7 @@ function SavedNews(props) {
           <div className="result__show-results">
             {savedNews.map((newsCard) => {
               return (
-                <News newsCard={newsCard} isSaved={isSaved} isFound={isFound} myPath={props.myPath}
+                <News newsCard={newsCard} myPath={props.myPath} isLoggedIn={props.isLoggedIn}
                 />
               )
             })

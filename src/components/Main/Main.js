@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import Loader from './Loader';
 import News from '../NewsCard/NewsCard'
 import { news } from '../../constants/cards';
@@ -9,26 +9,12 @@ function Main(props) {
   /* const currentUser = React.useContext(CurrentUserContext);
   const initialLoading = React.useContext(InitialLoadingContext);   */
 
-  // const { news } = props;
+  // const { news } = props; 
+  const [numberOfNews, setNumberOfNews] = useState(3);
 
-  // function handleTrashClick() {
-  //   props.onTrashClick(props.news);
-  // }
-
-  // function handleAdviceClick() {
-  //   props.onTrashClick(props.news);
-  // }
-
-  // function handleTrashClick() {
-  //   props.onTrashClick(news);
-  // }
-
-  // function handleHintClick() {
-  //   props.onHintClick(news);
-  // }
-
-  const isSaved = false;
-  const isFound = true;
+  function onShowMore() {
+    setNumberOfNews(numberOfNews + 3);
+  }
 
   return (
     <div className="content">
@@ -36,20 +22,21 @@ function Main(props) {
         <div className="result__articles">
           <h2 className="result__title"> Результаты поиска</h2>
           <div className="result__show-results">
-            {news.map((newsCard) => {
-              return (
-                <News newsCard={newsCard} isSaved={isSaved} isFound={isFound} myPath={props.myPath}
-                />
-              )
-            })
+            {
+              news.slice(0, numberOfNews).map((newsCard) => {
+                return (
+                  <News newsCard={newsCard} myPath={props.myPath} isLoggedIn={props.isLoggedIn}
+                  />
+                )
+              })
             }
           </div>
-          <button
+          {(news.length > numberOfNews) && <button
             type="button"
             aria-label="показать больше результатов"
             className="result__show-button"
-          // onClick={props.onAddPlace}
-          >Показать еще</button>
+            onClick={onShowMore}
+          >Показать еще</button>}
         </div>
       </section>
 

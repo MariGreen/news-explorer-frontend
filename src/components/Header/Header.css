@@ -44,6 +44,24 @@ cursor: Url('../../images/coursor_pointer.svg'), pointer;
  }
 }
 
+@media screen and (max-width: 699px) {
+  .header__menu-button {
+   width: 40px;
+   height: 40px;
+   background-color: transparent;
+   background-image: url(../../images/header_menu_white.svg);
+   background-position: center;
+   background-repeat: no-repeat;
+   margin: auto 40px;
+   z-index: 5;   
+ }
+ .header__menu-button:hover {
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
+ }  
+}
+
+
+
 /* Мобильный */
 
 @media screen and (max-width: 425px) {
@@ -59,3 +77,4 @@ cursor: Url('../../images/coursor_pointer.svg'), pointer;
     line-height: 1.5; 
  }
 }
+
