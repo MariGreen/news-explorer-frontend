@@ -14,7 +14,7 @@ function SavedNews(props) {
           <div className="result__show-results">
             {savedNews.map((newsCard) => {
               return (
-                <News newsCard={newsCard} myPath={props.myPath} isLoggedIn={props.isLoggedIn}
+                <News newsCard={newsCard} myPath={props.myPath} isLoggedIn={props.isLoggedIn} key={newsCard._id}
                 />
               )
             })

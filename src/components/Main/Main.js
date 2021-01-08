@@ -25,7 +25,7 @@ function Main(props) {
             {
               news.slice(0, numberOfNews).map((newsCard) => {
                 return (
-                  <News newsCard={newsCard} myPath={props.myPath} isLoggedIn={props.isLoggedIn}
+                  <News newsCard={newsCard} myPath={props.myPath} isLoggedIn={props.isLoggedIn} key={newsCard._id}
                   />
                 )
               })

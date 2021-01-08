@@ -6,11 +6,13 @@ import Navbar from '../NavBar/NavBar';
 import './Header.css';
 
 function Header(props) {
+
+  const headerBGClassName = `header ${props.isMenuPopupOpen ? 'header_black' : ''}`;
   return (
-    <header className='header'>
+    <header className={headerBGClassName}>
       <Link to='/' className='header__title header__title_invert'>NewsExplorer</Link>
       <Navbar loggedIn={props.loggedIn} userName={props.userName} onLoginClick={props.onLoginClick} onSignOut={props.onSignOut} myPath={props.myPath} />
-      <button type="button" className="header__menu-button" onClick={props.onMenuOpen}></button>
+      { !props.isMenuPopupOpen && <button type="button" className="header__menu-button" onClick={props.onMenuOpen}></button>}
     </header>
   )
 }

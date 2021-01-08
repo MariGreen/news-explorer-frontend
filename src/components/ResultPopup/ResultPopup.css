@@ -36,10 +36,10 @@
   margin: 0 auto;
 } */
 
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) {
   .popup__form-container {
     min-height: 182px;
     visibility: hidden;
   }
-}
+} */
 

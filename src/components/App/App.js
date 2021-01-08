@@ -80,7 +80,7 @@ function App() {
 
   return (
     <div className="page page__container">
-      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} onMenuOpen={onMenuOpen} />
+      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} onMenuOpen={onMenuOpen} isMenuPopupOpen={isMenuPopupOpen} />
 
       <Switch>
 
