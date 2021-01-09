@@ -27,7 +27,6 @@
 
 .popup__form-container {
   width: 430px;
-  /* width: 40%; */
   min-width: 320px;
   background-color: #fff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
@@ -37,7 +36,6 @@
   position: relative;
   flex-direction: column;
   align-items: flex-start;
-  /* justify-content: center; */
   box-sizing: border-box;
   padding: 34px 36px 28px;
 } 
@@ -91,27 +89,34 @@
   .popup__title {
     color: #000;
   }
-}
+}*/
 
 @media screen and (max-width: 400px) {
   .popup__form-container {
     width: 100%;
-    min-height: 560px;
+    height: calc(100vh - 66px);
+    max-height: 576px;
     min-width: 320px;    
     padding: 16px;
+    margin-top: 45px;
   } 
-}*/
+}
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 640px) {
   .popup__close-button {
-    align-self: flex-end;
+    /* align-self: flex-end;
     width: 24px;
     height: 24px;
     top: -36px;
     left: 85%;
-    padding: 0; 
+    padding: 0;  */
+    display: none;
   }
 } 
+
+
+
+
   
  
    

@@ -78,9 +78,8 @@ function LoginPopup(props) {
       <button type="submit" className="popup__save-button">
         {/* {loading ? `Сохранение...` : `Создать`} */} Войти
       </button>
-      <div className='auth__signup'>
-        <p className='auth__form-item'>или <span onClick={props.onRegisterClick}>Зарегистрироваться</span></p>
-        {/* <Link to='/sign-up' className='auth__form-item auth__form-item_link'>Регистрация</Link> */}
+      <div className='popup__toggle'>
+        <p className='popup__toggle-item'>или <span className='popup__toggle-item popup__toggle-item_link' onClick={props.onRegisterClick}>Зарегистрироваться</span></p>
       </div>
     </PopupWithForm>
   );

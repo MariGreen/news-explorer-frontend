@@ -79,28 +79,32 @@ function RegisterPopup(props) {
           <span id="password-input-error" className="popup__form-item popup__form-item_error">Ошибка</span>
         </div>
         <div className="popup__form-element">
-          <label htmlFor="name-input" className="popup__form-element-label">Имя</label>
+          <label htmlFor="name-input" className="popup__form-element-label">Имя
           <input
-            id="name-input"
-            type="text"
-            name="name"
-            className="popup__form-item-field popup__form-item-field_name"
-            placeholder="Введите своё имя"
-            value={name || ''}
-            onChange={handleChangeName}
-            autoComplete="off"
-            required
-          />
+              id="name-input"
+              type="text"
+              name="name"
+              className="popup__form-item-field popup__form-item-field_name"
+              placeholder="Введите своё имя"
+              value={name || ''}
+              onChange={handleChangeName}
+              autoComplete="off"
+              required
+            />
+          </label>
           <span id="name-input-error" className="popup__form-item popup__form-item_error">Ошибка</span>
         </div>
+
+
       </fieldset>
+      <span id="user-input-error" className="popup__form-item popup__form-item_error-user">Такой пользователь уже есть</span>
+
 
       <button type="submit" className="popup__save-button">
         {/* {loading ? `Сохранение...` : `Создать`} */} Зарегистрироваться
       </button>
-      <div className='auth__signup'>
-        <p className='auth__form-item'>или <span onClick={props.onLoginClick}>Войти </span></p>
-        {/* <Link to='/sign-up' className='auth__form-item auth__form-item_link'>Регистрация</Link> */}
+      <div className='popup__toggle'>
+        <p className='popup__toggle-item'>или <span className='popup__toggle-item popup__toggle-item_link' onClick={props.onLoginClick}>Войти </span></p>
       </div>
     </PopupWithForm>
   );

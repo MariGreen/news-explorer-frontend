@@ -18,7 +18,7 @@
 .popup__form-element {
   position: relative;
   margin: 0px auto 13px;
-  -webkit-text-security: square;
+  /* -webkit-text-security: square; */
 }
 
 .popup__form-element-label {
@@ -141,33 +141,36 @@
   }
 }
 
-.auth {
+/* .auth {
   max-width: 358px;
   width: 40%;
   min-width: 260px;
   background-color: #000;
   color: #FFFFFF;
   margin: auto;
-}
+} */
 
-.auth__signup {
+.popup__toggle {
   display: flex;
   flex-direction: row;
   margin: 15px auto 0px;
 }
 
-.auth__form-item {
+.popup__toggle-item {
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.21;
-  color: #2F71E5;
+  line-height: 1.21;  
   text-decoration: none;
   margin: 0px 5px 0px 0px;
 }
 
-.auth__form-item_link:hover {
-  cursor: pointer;
+.popup__toggle-item_link {
+  color: #2F71E5;
+}
+
+.popup__toggle-item_link:hover {
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
   opacity: 0.6;
 }

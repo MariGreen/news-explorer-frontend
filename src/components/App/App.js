@@ -80,7 +80,7 @@ function App() {
 
   return (
     <div className="page page__container">
-      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} onMenuOpen={onMenuOpen} isMenuPopupOpen={isMenuPopupOpen} />
+      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} onMenuOpen={onMenuOpen} isMenuPopupOpen={isMenuPopupOpen} isPopupOpen={isMenuPopupOpen || isLoginPopupOpen || isRegisterPopupOpen} onClose={closeAllPopups} />
 
       <Switch>
 
@@ -120,7 +120,6 @@ function App() {
 
         <MenuPopup
           isOpen={isMenuPopupOpen}
-          onClose={closeAllPopups}
           onAuthClick={handleSwitchToLogin}>
         </MenuPopup>
       </section>

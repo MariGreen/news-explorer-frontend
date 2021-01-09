@@ -36,7 +36,7 @@ cursor: Url('../../images/coursor_pointer.svg'), pointer;
 }
 
 .header__menu-button {
-  visibility: collapse;
+  display: none;
 }
 
 /* Планшетник */
@@ -55,9 +55,9 @@ cursor: Url('../../images/coursor_pointer.svg'), pointer;
 
 
 
-@media screen and (max-width: 699px) {
+@media screen and (max-width: 640px) {
   .header__menu-button {
-   visibility: visible;
+  display: block;
    width: 40px;
    height: 40px;
    padding: 0;
