@@ -77,6 +77,67 @@
   margin: 0px 0px 22px;
 }
 
+.popup__save-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 100px;
+  background-color: #2F71E5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  margin: 18px auto 0px;
+  min-height: 64px;
+}
+
+
+.popup__save-button:hover {
+  opacity: 0.8;
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
+  transition: all 1s ease;
+}
+
+.popup__save-button:disabled {  
+  background-color: #E6E8EB;
+  box-sizing: border-box;
+  color: #B6BCBF;
+  box-shadow: none;  
+}
+
+.popup__save-button:active {  
+  background-color: #2A65CC;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  box-sizing: border-box;
+   
+}
+
+.popup__save-button:disabled:hover {  
+  cursor: default;  
+}
+
+@media screen and (max-width: 768px) {
+  .popup__save-button {
+    min-height: 40px;
+    font-size: 14px;
+    line-height: 1.21;
+    border-radius: 2px;
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  .popup__save-button {
+    margin: 0;
+  }
+}
+
 /* @media screen and (max-width: 400px) {
   .popup {
     background-color: rgba(0, 0, 0, 0.1);

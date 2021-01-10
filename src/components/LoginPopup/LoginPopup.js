@@ -1,35 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import '../LoginPopup/LoginPopup.css';
 // import { LoadingContext } from '../contexts/LoadingContext';
 
 function LoginPopup(props) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  // const loading = React.useContext(LoadingContext);
-
-  function handleChangeEmail(evt) {
-    setEmail(evt.target.value);
-  }
-
-  function handleChangePassword(evt) {
-    setPassword(evt.target.value);
-  }
-
-  // function handleSubmit(evt) {
-  //   evt.preventDefault();
-  //   // Передаём значения управляемых компонентов во внешний обработчик
-  //   props.onLogin({
-  //     name,
-  //     link,
-  //   });
-  // }
-
   React.useEffect(() => {
-    setEmail('');
-    setPassword('');
+    setFormValues({
+      email: "",
+      password: ""
+    });
   }, [props.isOpen]);
+
+
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: ""
+  });
+
+  const [formValidity, setFormValidity] = useState({
+    emailValid: false,
+    passwordValid: false
+  });
+
+  const handleInputChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setFormValues((prevState) => ({ ...prevState, [name]: value }));
+    },
+    [setFormValues]
+  );
+
+  useEffect(
+    function validateInputs() {
+      const isEmailFilled = formValues.email.length > 5;
+      const isEmailValid = isEmailFilled;
+
+      const isPasswordFilled = formValues.password.length > 0;
+      const isPasswordValid = isPasswordFilled;
+
+      setFormValidity((prevValidity) => ({
+        emailValid: isEmailValid,
+        passwordValid: isPasswordValid
+      }));
+    },
+    [formValues, setFormValidity]
+  );
+
+  const { email, password } = formValues;
+  const { emailValid, passwordValid } = formValidity;
+  const isSubmitDisabled = !emailValid || !passwordValid;
+
 
   return (
     <PopupWithForm
@@ -49,13 +70,13 @@ function LoginPopup(props) {
             className="popup__form-item-field popup__form-item-field_email"
             placeholder="Введите почту"
             value={email || ''}
-            onChange={handleChangeEmail}
+            onChange={handleInputChange}
             minLength="5"
             maxLength="30"
             autoComplete="off"
             required
           />
-          <span id="email-input-error" className="popup__form-item popup__form-item_error">Ошибка</span>
+          {!emailValid && <span id="email-input-error" className="popup__form-item popup__form-item_error">Неправильный формат email</span>}
         </div>
 
         <div className="popup__form-element">
@@ -67,16 +88,16 @@ function LoginPopup(props) {
             className="popup__form-item-field popup__form-item-field_password"
             placeholder="Введите пароль"
             value={password || ''}
-            onChange={handleChangePassword}
+            onChange={handleInputChange}
             autoComplete="off"
             required
           />
-          <span id="password-input-error" className="popup__form-item popup__form-item_error">Ошибка</span>
+          {!passwordValid && <span id="password-input-error" className="popup__form-item popup__form-item_error">Неправильный формат password</span>}
         </div>
       </fieldset>
 
-      <button type="submit" className="popup__save-button">
-        {/* {loading ? `Сохранение...` : `Создать`} */} Войти
+      <button type="submit" className="popup__save-button" disabled={isSubmitDisabled}>
+        {/* {loading ? `Вход...` : `Войти`} */} Войти
       </button>
       <div className='popup__toggle'>
         <p className='popup__toggle-item'>или <span className='popup__toggle-item popup__toggle-item_link' onClick={props.onRegisterClick}>Зарегистрироваться</span></p>
