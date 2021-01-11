@@ -30,6 +30,12 @@ function RegisterPopup(props) {
   //   });
   // }
 
+  // function handleSubmit(evt) {
+  //   evt.preventDefault();
+  //   // Передаём значения управляемых компонентов во внешний обработчик
+  //   props.onSubmit();
+  // }
+
   React.useEffect(() => {
     setFormValues({
       email: "",
@@ -88,7 +94,7 @@ function RegisterPopup(props) {
       title="Регистрация"
       isOpen={props.isOpen}
       onClose={props.onClose}
-    // onSubmit={handleSubmit}
+      onSubmit={props.onSubmit}
     >
       <fieldset className="popup__form-item">
         <div className="popup__form-element">
@@ -146,7 +152,7 @@ function RegisterPopup(props) {
       <span id="user-input-error" className="popup__form-item popup__form-item_error-user">Такой пользователь уже есть</span>
 
 
-      <button type="submit" className="popup__save-button" disabled={isSubmitDisabled}>
+      <button type="submit" className="popup__save-button" disabled={isSubmitDisabled} >
         {/* {loading ? `Регистрация...` : `Зарегистрироваться`} */} Зарегистрироваться
       </button>
       <div className='popup__toggle'>
@@ -159,6 +165,8 @@ function RegisterPopup(props) {
 RegisterPopup.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onLoginClick: PropTypes.func.isRequired,
 }
 
 export default RegisterPopup;

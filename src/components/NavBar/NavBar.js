@@ -1,22 +1,27 @@
 import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, useHistory } from 'react-router-dom';
 import './NavBar.css';
-import logOut from '../../images/navbar_logout.svg';
+import logOutDark from '../../images/navbar_logout.svg';
+import logOutWhite from '../../images/navbar_logout_white.svg';
 
 
 const NavBar = (props) => {
-  // const history = useHistory();
-  // const [buttonClassName, setButtonClassName] = React.useState('');
 
-  // useEffect(() => props.loggedIn ? setButtonClassName('header__link header__link_loggedIn') : setButtonClassName('header__link'), [props.loggedIn])
+  const history = useHistory();
+
   const isMain = props.myPath.pathname === '/';
+  const headerItemClassName = `${isMain ? 'header__item header__item_underline-light header__item_light' : 'header__item header__item_dark'}`;
+  const headerLinkClassName = `${isMain ? 'header__link header__link_light' : 'header__link header__link_dark'}`;
+  const headerLinkClassNameInvert = `${!isMain ? 'header__item header__item_dark header__item_underline' : 'header__item header__item_light'}`
+  const headerItemUserClassName = `header__item ${isMain ? 'header__item_light' : 'header__item_dark'}`;
+  const headerButtonUserClassName = `header__button ${isMain ? 'header__button_light' : 'header__button_dark'}`;
 
   function signOut() {
     if (props.loggedIn) {
       props.onSignOut();
       // localStorage.removeItem('jwt');
-      // history.push('/sign-in');
+      history.push('/');
     }
   }
 
@@ -24,13 +29,10 @@ const NavBar = (props) => {
   return (
     <nav className='header__navbar'>
       <ul className='header__nav' >
-        {/* {props.loggedIn ? <li className='header__item'>{props.name}</li> : null} */}
-        <li className={`${isMain ? 'header__item header__item_underline' : 'header__item'}`}> <Link to='/' className='header__link' >Главная</Link>
-          {/* <Link to={props.buttonLink}>
-          <button onClick={signOut} className={buttonClassName}>{props.buttonText}</button></Link> */}
-        </li>
-        {props.loggedIn ? <li className={`${!isMain ? 'header__item header__item_underline' : 'header__item'}`}><Link className='header__link' to='/saved-news'>Сохранённые статьи</Link></li> : null}
-        {props.loggedIn ? <li className='header__item'><button className='header__button' onClick={signOut}>{props.userName} <img className='header__logout' src={logOut} alt='Выйти' /></button></li> : <li className='header__item'><button className='header__button' onClick={props.onLoginClick}> Авторизоваться </button></li>}
+        <li className={headerItemClassName}> <Link to='/' className={headerLinkClassName} >Главная</Link></li>
+        {props.loggedIn ? <li className={headerLinkClassNameInvert}><Link className={headerLinkClassName} to='/saved-news'>Сохранённые статьи</Link></li> : null}
+
+        {props.loggedIn ? <li className={headerItemUserClassName}><button className={headerButtonUserClassName} onClick={signOut}>{props.userName} <img className='header__logout' src={isMain ? logOutWhite : logOutDark} alt='Выйти' /></button></li> : <li className={headerItemUserClassName}><button className={headerButtonUserClassName} onClick={props.onLoginClick}> Авторизоваться </button></li>}
 
       </ul>
 
@@ -38,12 +40,11 @@ const NavBar = (props) => {
   )
 }
 
-// NavBar.propTypes = {
-//   loggedIn: PropTypes.bool.isRequired,
-//   onClick: PropTypes.func.isRequired,
-//   name: PropTypes.string,
-//   buttonLink: PropTypes.string,
-//   buttonText: PropTypes.string,
-// }
+NavBar.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onSignOut: PropTypes.func.isRequired,
+  userName: PropTypes.string,
+}
 
 export default NavBar;

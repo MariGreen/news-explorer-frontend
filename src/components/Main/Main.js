@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-// import Loader from './Loader';
+import PropTypes from 'prop-types';
+// import Preloader from '../Preloader/Preloader';
+// import { InitialLoadingContext } from '../../context/InitialLoadingContext';
 import News from '../NewsCard/NewsCard'
 import { news } from '../../constants/cards';
 import './Main.css';
 
 
 function Main(props) {
-  /* const currentUser = React.useContext(CurrentUserContext);
-  const initialLoading = React.useContext(InitialLoadingContext);   */
+  /* const currentUser = React.useContext(CurrentUserContext);*/
+  // const initialLoading = React.useContext(InitialLoadingContext);
 
   // const { news } = props; 
   const [numberOfNews, setNumberOfNews] = useState(3);
@@ -18,6 +20,7 @@ function Main(props) {
 
   return (
     <div className="content">
+      {/* {initialLoading && <Preloader />} */}
       <section className="result">
         <div className="result__articles">
           <h2 className="result__title"> Результаты поиска</h2>
@@ -39,24 +42,13 @@ function Main(props) {
           >Показать еще</button>}
         </div>
       </section>
-
-      {/* {initialLoading && <Loader />} */}
-
-      {/* <section className="elements" aria-label="секция с фотографиями">
-        {props.cards.map((card) => {
-          return (
-            <Card
-              card={card}
-              onCardClick={props.onCardClick}
-              key={card._id}
-              onTrashClick={props.onTrashClick}
-              onCardLike={props.onCardLike}
-            />
-          );
-        })}
-      </section> */}
     </div>
   );
+}
+
+Main.propTypes = {
+  myPath: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 }
 
 export default Main;

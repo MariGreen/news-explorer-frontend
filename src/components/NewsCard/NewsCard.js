@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './NewsCard.css';
 import HoverHint from '../HoverHint/HoverHint';
 
@@ -44,6 +45,12 @@ function News(props) {
       <h4 className="news-card__source">{newsCard.source}</h4>
     </div>
   )
+}
+
+News.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  newsCard: PropTypes.node.isRequired,
+  myPath: PropTypes.string,
 }
 
 export default News;

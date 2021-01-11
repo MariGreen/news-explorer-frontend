@@ -109,6 +109,7 @@ function LoginPopup(props) {
 LoginPopup.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  onRegisterClick: PropTypes.func.isRequired,
 }
 
 export default LoginPopup;

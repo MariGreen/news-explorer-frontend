@@ -11,10 +11,12 @@ import ResultPopup from '../ResultPopup/ResultPopup';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import MenuPopup from '../MenuPopup/MenuPopup';
 // import NothingFound from '../NothingFound/NothingFound';
+// import Preloader from '../Preloader/Preloader';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
 
 function App() {
+  // const [initialLoading, setInitialLoading] = useState(true);
 
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
@@ -34,10 +36,15 @@ function App() {
   }
 
   function handleSwitchToLogin() {
+    closeAllPopups();
     setIsLoginPopupOpen(true);
-    setIsMenuPopupOpen(false);
+    // setIsMenuPopupOpen(false);
   };
 
+  function handleSubmitRegister() {
+    setIsRegisterPopupOpen(false);
+    setIsResultPopupOpen(true);
+  }
 
   function handleSwitchPopups() {
     setIsRegisterPopupOpen(!isRegisterPopupOpen);
@@ -80,7 +87,8 @@ function App() {
 
   return (
     <div className="page page__container">
-      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} onMenuOpen={onMenuOpen} isMenuPopupOpen={isMenuPopupOpen} isPopupOpen={isMenuPopupOpen || isLoginPopupOpen || isRegisterPopupOpen} onClose={closeAllPopups} />
+      {/* <InitialLoadingContext.Provider value={initialLoading}> */}
+      <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} onMenuOpen={onMenuOpen} isMenuPopupOpen={isMenuPopupOpen} isPopupOpen={isMenuPopupOpen || isLoginPopupOpen || isRegisterPopupOpen || isResultPopupOpen} onClose={closeAllPopups} />
 
       <Switch>
 
@@ -105,17 +113,20 @@ function App() {
           isOpen={isLoginPopupOpen}
           onClose={closeAllPopups}
           onRegisterClick={handleSwitchPopups}
+          onSubmit={closeAllPopups}
         />
 
         <RegisterPopup
           isOpen={isRegisterPopupOpen}
           onClose={closeAllPopups}
           onLoginClick={handleSwitchPopups}
+          onSubmit={handleSubmitRegister}
         />
 
         < ResultPopup
           isOpen={isResultPopupOpen}
           onClose={closeAllPopups}
+          onResultClick={handleSwitchToLogin}
         />
 
         <MenuPopup
@@ -123,6 +134,7 @@ function App() {
           onAuthClick={handleSwitchToLogin}>
         </MenuPopup>
       </section>
+      {/* </InitialLoadingContext.Provider> */}
     </div>
   );
 }
