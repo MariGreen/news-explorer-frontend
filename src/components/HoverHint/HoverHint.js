@@ -13,7 +13,7 @@ function HoverHint(props) {
 }
 
 HoverHint.propTypes = {
-  myPath: PropTypes.string
+  myPath: PropTypes.object
 }
 
 export default HoverHint;

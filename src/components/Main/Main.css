@@ -61,6 +61,11 @@
   padding: 18px 84px 22px;
 }
 
+.result__show-button:hover {
+  background-color: #f0f0f0;
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
+}
+
 /* Планшет */
 
 @media screen and (max-width: 1312px) {

@@ -1,9 +1,12 @@
 .page {
-  /* background-color: #fff; */
-  background-color: papayawhip;
+  background-color: #fff;
+  /* background-color: papayawhip; */
   color: #1A1B22;
   font-weight: normal;
-  margin: 0;  
+  margin: 0;
+  /* --main-color: #1A1B22;  
+  --accent-color: #2F71E5;
+  -moz-background-color: #fff;  */
 }
 
 .page__container {
@@ -16,9 +19,9 @@
   box-sizing: border-box;
 }
 
- div, p, section, h1, h2, h3, li, ul, .footer, span {
+ /* div, p, section, h1, h2, h3, li, ul, .footer, span {
 	border: 1px solid olive;
-}
+} */
 
 
 

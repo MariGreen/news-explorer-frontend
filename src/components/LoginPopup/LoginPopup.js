@@ -58,7 +58,7 @@ function LoginPopup(props) {
       title="Вход"
       isOpen={props.isOpen}
       onClose={props.onClose}
-    // onSubmit={handleSubmit}
+      onSubmit={props.onSubmit}
     >
       <fieldset className="popup__form-item">
         <div className="popup__form-element">

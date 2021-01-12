@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Footer.css';
-import gitHub from '../../images/footer_github.png';
-import faceBook from '../../images/footer_fb.png';
+import gitHub from '../../images/footer_github.svg';
+import faceBook from '../../images/footer_fb.svg';
 
 function Footer() {
     return (

@@ -48,9 +48,9 @@ function News(props) {
 }
 
 News.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-  newsCard: PropTypes.node.isRequired,
-  myPath: PropTypes.string,
+  loggedIn: PropTypes.bool,
+  News: PropTypes.node,
+  myPath: PropTypes.object,
 }
 
 export default News;

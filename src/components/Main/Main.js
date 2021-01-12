@@ -47,7 +47,7 @@ function Main(props) {
 }
 
 Main.propTypes = {
-  myPath: PropTypes.string.isRequired,
+  myPath: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 }
 

@@ -8,7 +8,7 @@
   height: 286px;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0;  
   background-color: black;     
 }
 
@@ -25,6 +25,7 @@
   font-size: 18px;
   line-height: 3.1;
   margin: 16px auto 0px;
+  color:#fff;
 }
 
 .header__item-mobile {
@@ -34,6 +35,13 @@
   display: none;
 }
 
+.header__link_menu {
+  color: #fff;
+}
+
+.header__link_menu:visited {
+  color: #fff;
+}
 
 /* Мобильный */
 
@@ -43,10 +51,10 @@
    width: 100%;
    height: 56px;
    margin: 25px auto;   
-   padding: 16px 80px;    
- }
-
- 
+   padding: 16px 80px;
+   color: #fff;
+   border: 1px solid #fff;
+ } 
 }
  
 @media screen and (min-width: 641px)  {
@@ -74,12 +82,6 @@
     left: 89%;
     padding: 0;  
     z-index: 99;    
-  }
-  
-  .popup__close-mobile:hover {
-    opacity: 0.6;
-    cursor: Url('../../images/coursor_pointer.svg'), pointer;
-    transition: all 1s ease;
-  }
+  }  
 }
 

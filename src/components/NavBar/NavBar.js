@@ -42,7 +42,7 @@ const NavBar = (props) => {
 
 NavBar.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   onSignOut: PropTypes.func.isRequired,
   userName: PropTypes.string,
 }

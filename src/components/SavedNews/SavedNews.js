@@ -33,7 +33,7 @@ function SavedNews(props) {
 }
 
 SavedNews.propTypes = {
-  myPath: PropTypes.string.isRequired,
+  myPath: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 }
 

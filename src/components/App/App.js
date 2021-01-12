@@ -31,6 +31,11 @@ function App() {
     setIsLoginPopupOpen(true);
   }
 
+  function handleLogin() {
+    setLoggedIn(true);
+    closeAllPopups();
+  }
+
   function handleLogOutClick() {
     setLoggedIn(false);
   }
@@ -38,7 +43,6 @@ function App() {
   function handleSwitchToLogin() {
     closeAllPopups();
     setIsLoginPopupOpen(true);
-    // setIsMenuPopupOpen(false);
   };
 
   function handleSubmitRegister() {
@@ -113,7 +117,7 @@ function App() {
           isOpen={isLoginPopupOpen}
           onClose={closeAllPopups}
           onRegisterClick={handleSwitchPopups}
-          onSubmit={closeAllPopups}
+          onSubmit={handleLogin}
         />
 
         <RegisterPopup
@@ -141,15 +145,4 @@ function App() {
 
 export default App;
 
-// function Component({ onClick, onChange, value, children }) {
-//   // ...
-// }
 
-// Component.propTypes = {
-//   onClick: PropTypes.func.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   value: PropTypes.string,
-//   children: PropTypes.node,
-// }
-
-// export default Component; 

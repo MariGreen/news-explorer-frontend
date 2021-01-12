@@ -28,7 +28,7 @@ function PopupWithForm(props) {
 }
 
 PopupWithForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
   name: PropTypes.string,
   onClose: PropTypes.func.isRequired,
