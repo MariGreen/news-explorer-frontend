@@ -37,12 +37,6 @@
   grid-gap: 16px 16px;
 }
 
-.result__cards-imitation {
-  max-width: 400px;
-  height: 576px;
-  background-color: tomato;
-}
-
 .result__show-button {
   width: 288px;
   height: 64px;
