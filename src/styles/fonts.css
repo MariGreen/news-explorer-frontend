@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('../vendor/fonts/inter-medium.woff') format('woff'),
+       url('../vendor/fonts/inter-medium.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../vendor/fonts/inter-regular.woff') format('woff'),
+        url('../vendor/fonts/inter-regular.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style:  normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('../vendor/fonts/roboto-regular.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Roboto 900';
+  font-style:  normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('../vendor/fonts/roboto-black.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Roboto Bold';
+  font-style:  normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('../vendor/fonts/roboto-bold.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Roboto 500';
+  font-style:  normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../vendor/fonts/roboto-medium.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style:  normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url('../vendor/fonts/robotoslab-bold.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style:  normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('../vendor/fonts/robotoslab-regular.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Sourse Sans Pro';
+  font-style:  normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('../vendor/fonts/sourcesanspro-regular.woff') format('woff')
+}
+

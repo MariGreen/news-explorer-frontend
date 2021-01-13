@@ -1,0 +1,100 @@
+.header {
+  max-width: 100%;  
+  max-height: 80px;
+  padding: 0px 104px;
+  border-bottom: #C4C4C4 1px solid;
+  background: rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; 
+  z-index: 7; 
+}
+
+.header_black {
+  background: #000;
+}
+
+.header__title {
+  font-family: 'Roboto Slab', "Palatino Linotype", "Book Antiqua", "Palatino", serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: left;
+  margin: 28px 0px 30px;
+  text-decoration: none;
+  color: #1A1B22;
+}
+
+.header__title_invert {
+  color: #fff;
+}
+
+.header__title:hover {
+cursor: Url('../../images/coursor_pointer.svg'), pointer;
+}
+
+.header__menu-button {
+  display: none;
+}
+
+/* Планшетник */
+
+@media screen and (max-width: 1312px) {
+  .header {
+    padding: 0px 40px; 
+ }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    max-height: 66px;     
+ }
+}
+
+
+
+@media screen and (max-width: 640px) {
+  .header__menu-button {
+  display: block;
+   width: 40px;
+   height: 40px;
+   padding: 0;
+   background-color: transparent;
+   background-image: url(../../images/header_menu_white.svg);
+   background-position: center;
+   background-repeat: no-repeat;   
+   z-index: 5;   
+ }
+ .header__menu-button:hover {
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
+ }  
+}
+
+
+
+/* Мобильный */
+
+@media screen and (max-width: 425px) {
+  .header {
+    max-height: 56px;
+    padding: 0px 16px;    
+ }
+}
+
+@media screen and (max-width: 425px) {
+  .header__title {   
+    font-size: 16px;
+    line-height: 1.5; 
+ }
+}
+
+@media screen and (max-width: 425px) {
+  .header__menu-button {   
+    width: 24px;
+   height: 24px; 
+ }
+}
+
