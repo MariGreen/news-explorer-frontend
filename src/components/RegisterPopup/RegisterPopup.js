@@ -4,37 +4,6 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import './RegisterPopup.css';
 
 function RegisterPopup(props) {
-  // const [email, setEmail] = React.useState('');
-  // const [password, setPassword] = React.useState('');
-  // const [name, setName] = React.useState('');
-  // // const loading = React.useContext(LoadingContext);
-
-  // function handleChangeEmail(evt) {
-  //   setEmail(evt.target.value);
-  // }
-
-  // function handleChangePassword(evt) {
-  //   setPassword(evt.target.value);
-  // }
-
-  // function handleChangeName(evt) {
-  //   setName(evt.target.value);
-  // }
-
-  // function handleSubmit(evt) {
-  //   evt.preventDefault();
-  //   // Передаём значения управляемых компонентов во внешний обработчик
-  //   props.onLogin({
-  //     name,
-  //     link,
-  //   });
-  // }
-
-  // function handleSubmit(evt) {
-  //   evt.preventDefault();
-  //   // Передаём значения управляемых компонентов во внешний обработчик
-  //   props.onSubmit();
-  // }
 
   React.useEffect(() => {
     setFormValues({

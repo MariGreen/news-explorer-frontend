@@ -76,7 +76,7 @@ function LoginPopup(props) {
             autoComplete="off"
             required
           />
-          {!emailValid && <span id="email-input-error" className="popup__form-item popup__form-item_error">Неправильный формат email</span>}
+          {!emailValid && <span id="email-error" className="popup__form-item popup__form-item_error">Неправильный формат email</span>}
         </div>
 
         <div className="popup__form-element">
@@ -92,7 +92,7 @@ function LoginPopup(props) {
             autoComplete="off"
             required
           />
-          {!passwordValid && <span id="password-input-error" className="popup__form-item popup__form-item_error">Неправильный формат password</span>}
+          {!passwordValid && <span id="password-error" className="popup__form-item popup__form-item_error">Неправильный формат password</span>}
         </div>
       </fieldset>
 

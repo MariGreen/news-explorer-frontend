@@ -63,8 +63,12 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 1.37;
-  color: #B6BCBF;
-  
+  color: #B6BCBF;  
+}
+
+.seach-form__input-field:focus {  
+  border-color: #fff;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
 }
 
 .seach-form__submit {
@@ -91,6 +95,8 @@
 .seach-form__submit:active {  
   background-color: #2A65CC;
 }
+
+
 
 /* Планшетник */
 
@@ -143,7 +149,7 @@
 @media screen and (max-width: 425px) {
   .seach-form {
     min-height: 536px;
-    margin-top: -56px;
+    margin-top: -57px;
     background-size: auto cover;
  }
 }
@@ -169,7 +175,7 @@
  }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 465px) {
   .seach-form__input-field {
     max-height: 56px;
     width: 100%;
@@ -179,7 +185,7 @@
  }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 465px) {
   .seach-form__submit {
     height: 56px;
     box-sizing: border-box;
