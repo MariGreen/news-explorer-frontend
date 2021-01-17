@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import Preloader from '../Preloader/Preloader';
 // import { InitialLoadingContext } from '../../context/InitialLoadingContext';
 import News from '../NewsCard/NewsCard'
-import { news } from '../../constants/cards';
+// import { news } from '../../constants/cards';
 import './Main.css';
 
 
@@ -11,12 +11,16 @@ function Main(props) {
   /* const currentUser = React.useContext(CurrentUserContext);*/
   // const initialLoading = React.useContext(InitialLoadingContext);
 
-  // const { news } = props; 
+  const { news } = props;
   const [numberOfNews, setNumberOfNews] = useState(3);
 
   function onShowMore() {
     setNumberOfNews(numberOfNews + 3);
   }
+
+  useEffect(() => {
+    setNumberOfNews(3);
+  }, [news]);
 
   return (
     <div className="content">
@@ -26,9 +30,9 @@ function Main(props) {
           <h2 className="result__title"> Результаты поиска</h2>
           <div className="result__show-results">
             {
-              news.slice(0, numberOfNews).map((newsCard) => {
+              news.slice(0, numberOfNews).map((newsCard, index) => {
                 return (
-                  <News newsCard={newsCard} myPath={props.myPath} isLoggedIn={props.isLoggedIn} key={newsCard._id}
+                  <News newsCard={newsCard} myPath={props.myPath} isLoggedIn={props.isLoggedIn} key={index}
                   />
                 )
               })

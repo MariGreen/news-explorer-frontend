@@ -116,6 +116,22 @@
   
 }
 
+.news-card__link {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  text-decoration: none;
+  color: initial;
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
+}
+
+
+.news-card__date:visited {
+  text-decoration: none;  
+}
+
+
+
 .news-card__date {
   font-family: 'Source Sans Pro', Verdana, Tahoma, sans-serif;
   font-style: normal;
@@ -126,6 +142,11 @@
   color: #B6BCBF;
   margin: 0px 0px 12px;
 }
+.news-card__date:visited {
+  text-decoration: none;
+}
+
+
 
 .news-card__title {
   font-family: 'Roboto Slab', "Palatino Linotype", "Book Antiqua", "Palatino", serif;
@@ -135,6 +156,8 @@
   line-height: 1.15;  
   margin: 0px 0px 16px;
 }
+
+
 
 .news-card__text {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
