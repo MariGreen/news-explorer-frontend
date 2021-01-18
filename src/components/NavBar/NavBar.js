@@ -20,7 +20,7 @@ const NavBar = (props) => {
   function signOut() {
     if (props.loggedIn) {
       props.onSignOut();
-      // localStorage.removeItem('jwt');
+      localStorage.removeItem('jwt');
       history.push('/');
     }
   }

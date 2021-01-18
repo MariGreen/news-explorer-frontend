@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
+// import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { PreloaderContext } from '../../context/PreloaderContext';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import './RegisterPopup.css';
+// import * as auth from '../../utils/auth';
 
 function RegisterPopup(props) {
+
+  const loading = useContext(PreloaderContext);
+
 
   React.useEffect(() => {
     setFormValues({
@@ -57,13 +63,18 @@ function RegisterPopup(props) {
   const { emailValid, passwordValid, nameValid } = formValidity;
   const isSubmitDisabled = !emailValid || !passwordValid || !nameValid;
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    props.onSubmit(email, password, name);
+  };
+
   return (
     <PopupWithForm
       name="register"
       title="Регистрация"
       isOpen={props.isOpen}
       onClose={props.onClose}
-      onSubmit={props.onSubmit}
+      onSubmit={handleSubmit}
     >
       <fieldset className="popup__form-item">
         <div className="popup__form-element">

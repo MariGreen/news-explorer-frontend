@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
+import ProtectedRoute from '../ProtectedPoute';
 import newsApi from '../../utils/NewsApi';
+import * as auth from '../../utils/auth.js';
 import Header from '../Header/Header';
 import SeachForm from '../SeachForm/SeachForm';
 import Main from '../Main/Main';
@@ -13,6 +15,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import MenuPopup from '../MenuPopup/MenuPopup';
 import NothingFound from '../NothingFound/NothingFound';
 import { PreloaderContext } from '../../context/PreloaderContext';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Preloader from '../Preloader/Preloader';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
@@ -25,23 +28,56 @@ function App() {
   const [isResultPopupOpen, setIsResultPopupOpen] = useState(false);
   const [isMenuPopupOpen, setIsMenuPopupOpen] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(true);
-  const user = { name: "Грета Гарбо", email: "email@email.de" };
+  const [loggedIn, setLoggedIn] = useState(false);
+  // const user = { name: "Грета Гарбо", email: "email@email.de" };
   const myPath = useLocation();
 
   const [news, setNews] = useState([]);
   const [results, setResults] = useState(-1);
+  const [currentUser, setCurrentUser] = useState({});
+  const history = useHistory();
 
   function handleLoginClick() {
     setIsLoginPopupOpen(true);
   }
 
-  function handleLogin() {
-    setLoggedIn(true);
-    closeAllPopups();
-  }
+  const tokenCheck = () => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      auth.getContent(jwt)
+        .then((res) => {
 
-  function handleLogOutClick() {
+          if (res) {
+            if (res === 401) {
+              localStorage.removeItem(jwt);
+            } else {
+              setLoggedIn(true);
+              setCurrentUser({
+                email: res.data.email,
+                name: res.data.name,
+              });
+              closeAllPopups();
+              // history.push('/');
+            }
+          }
+        })
+        .catch(() => console.log({ message: 'Токен не передан или передан не в том формате' }));
+    }
+  };
+
+  useEffect(() => tokenCheck(), []);
+
+
+  const handleLogin = (email, password) => auth.authorize(email, password)
+    .then((data) => {
+      if (!data) {
+        throw new Error({ message: 'Токен не передан или передан не в том формате' });
+      } else {
+        tokenCheck();
+      }
+    }).catch((err) => console.log(err));
+
+  function onSignOut() {
     setLoggedIn(false);
   }
 
@@ -50,9 +86,20 @@ function App() {
     setIsLoginPopupOpen(true);
   };
 
-  function handleSubmitRegister() {
-    setIsRegisterPopupOpen(false);
-    setIsResultPopupOpen(true);
+  function handleSubmitRegister(email, password, name) {
+    auth.register(email, password, name).then((response) => {
+      if (response.status === 201) {
+        setIsRegisterPopupOpen(false);
+        setIsResultPopupOpen(true);
+        return response.json()
+      } else {
+        throw new Error('Something went wrong');
+      }
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+
   }
 
   function handleSwitchPopups() {
@@ -112,52 +159,52 @@ function App() {
   return (
     <div className="page page__container">
       <PreloaderContext.Provider value={isLoading}>
-        <Header loggedIn={loggedIn} userName={user.name} onLoginClick={handleLoginClick} onSignOut={handleLogOutClick} myPath={myPath} onMenuOpen={onMenuOpen} isMenuPopupOpen={isMenuPopupOpen} isPopupOpen={isMenuPopupOpen || isLoginPopupOpen || isRegisterPopupOpen || isResultPopupOpen} onClose={closeAllPopups} />
+        <CurrentUserContext.Provider value={currentUser}>
+          <Header loggedIn={loggedIn} onLoginClick={handleLoginClick} onSignOut={onSignOut} myPath={myPath} onMenuOpen={onMenuOpen} isMenuPopupOpen={isMenuPopupOpen} isPopupOpen={isMenuPopupOpen || isLoginPopupOpen || isRegisterPopupOpen || isResultPopupOpen} onClose={closeAllPopups} />
 
-        <Switch>
+          <Switch>
 
-          <Route path='/saved-news'>
-            <SavedNewsHeader />
-            <SavedNews myPath={myPath} isLoggedIn={loggedIn} />
-          </Route>
+            {/* <ProtectedRoute path='/saved-news' component={SavedNewsHeader} myPath={myPath} isLoggedIn={loggedIn} ></ProtectedRoute> */}
+            <ProtectedRoute exact path='/saved-news' component={SavedNews} myPath={myPath} isLoggedIn={loggedIn} onRouteClick={handleLoginClick} />
 
-          <Route path='/'>
-            <SeachForm onSearch={handleSearch} />
-            {isLoading && <Preloader />}
-            {results !== -1 && (results > 0 ? <Main myPath={myPath} isLoggedIn={loggedIn} news={news} /> : <NothingFound />)}
-            <About />
-          </Route>
+            <Route path='/'>
+              <SeachForm onSearch={handleSearch} />
+              {isLoading && <Preloader />}
+              {results !== -1 && (results > 0 ? <Main myPath={myPath} isLoggedIn={loggedIn} news={news} /> : <NothingFound />)}
+              <About />
+            </Route>
 
-        </Switch>
+          </Switch>
 
-        <Footer />
+          <Footer />
 
-        <section className="popups">
-          <LoginPopup
-            isOpen={isLoginPopupOpen}
-            onClose={closeAllPopups}
-            onRegisterClick={handleSwitchPopups}
-            onSubmit={handleLogin}
-          />
+          <section className="popups">
+            <LoginPopup
+              isOpen={isLoginPopupOpen}
+              onClose={closeAllPopups}
+              onRegisterClick={handleSwitchPopups}
+              onSubmit={handleLogin}
+            />
 
-          <RegisterPopup
-            isOpen={isRegisterPopupOpen}
-            onClose={closeAllPopups}
-            onLoginClick={handleSwitchPopups}
-            onSubmit={handleSubmitRegister}
-          />
+            <RegisterPopup
+              isOpen={isRegisterPopupOpen}
+              onClose={closeAllPopups}
+              onLoginClick={handleSwitchPopups}
+              onSubmit={handleSubmitRegister}
+            />
 
-          < ResultPopup
-            isOpen={isResultPopupOpen}
-            onClose={closeAllPopups}
-            onResultClick={handleSwitchToLogin}
-          />
+            < ResultPopup
+              isOpen={isResultPopupOpen}
+              onClose={closeAllPopups}
+              onResultClick={handleSwitchToLogin}
+            />
 
-          <MenuPopup
-            isOpen={isMenuPopupOpen}
-            onAuthClick={handleSwitchToLogin}>
-          </MenuPopup>
-        </section>
+            <MenuPopup
+              isOpen={isMenuPopupOpen}
+              onAuthClick={handleSwitchToLogin}>
+            </MenuPopup>
+          </section>
+        </CurrentUserContext.Provider>
       </PreloaderContext.Provider>
     </div>
   );

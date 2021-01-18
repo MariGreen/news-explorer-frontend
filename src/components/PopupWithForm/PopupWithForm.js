@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import './PopupWithForm.css';
 
 function PopupWithForm(props) {
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    props.onSubmit();
-  }
+  // function handleSubmit(evt) {
+  //   evt.preventDefault();
+  //   props.onSubmit();
+  // }
 
   return (
     <div className={`popup popup_${props.name} ${props.isOpen && 'popup_opened'}`}>
@@ -16,7 +16,7 @@ function PopupWithForm(props) {
         // method="POST"
         className="popup__form-container"
         noValidate
-        onSubmit={handleSubmit}
+        onSubmit={props.onSubmit}
       // onSubmit={props.onClose}
       >
         <button type="button" className="popup__close-button" onClick={props.onClose}></button>

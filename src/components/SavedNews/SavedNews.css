@@ -1,7 +1,6 @@
 .content {
-  width: 100%;
-  background-color: #F5F6F7;
-  display: flex;  
+  display: flex;
+  flex-direction: column;    
 }
 
 .result {

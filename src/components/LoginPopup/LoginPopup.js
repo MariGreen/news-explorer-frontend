@@ -51,6 +51,11 @@ function LoginPopup(props) {
   const { emailValid, passwordValid } = formValidity;
   const isSubmitDisabled = !emailValid || !passwordValid;
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    props.onSubmit(email, password);
+  };
+
 
   return (
     <PopupWithForm
@@ -58,7 +63,7 @@ function LoginPopup(props) {
       title="Вход"
       isOpen={props.isOpen}
       onClose={props.onClose}
-      onSubmit={props.onSubmit}
+      onSubmit={handleSubmit}
     >
       <fieldset className="popup__form-item">
         <div className="popup__form-element">
