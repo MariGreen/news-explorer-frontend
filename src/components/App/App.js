@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedPoute';
 import newsApi from '../../utils/NewsApi';
+import mainApi from '../../utils/MainApi';
 import * as auth from '../../utils/auth.js';
 import Header from '../Header/Header';
 import SeachForm from '../SeachForm/SeachForm';
@@ -11,7 +12,6 @@ import Footer from '../Footer/Footer';
 import LoginPopup from '../LoginPopup/LoginPopup';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import ResultPopup from '../ResultPopup/ResultPopup';
-import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import MenuPopup from '../MenuPopup/MenuPopup';
 import NothingFound from '../NothingFound/NothingFound';
 import { PreloaderContext } from '../../context/PreloaderContext';
@@ -33,9 +33,10 @@ function App() {
   const myPath = useLocation();
 
   const [news, setNews] = useState([]);
+  const [articles, setArticles] = useState([]);
   const [results, setResults] = useState(-1);
   const [currentUser, setCurrentUser] = useState({});
-  const history = useHistory();
+  // const history = useHistory();
 
   function handleLoginClick() {
     setIsLoginPopupOpen(true);
@@ -140,14 +141,63 @@ function App() {
     };
   });
 
+  useEffect(() => {
+    if (loggedIn) {
+      setIsLoading(true);
+      mainApi.getArticles()
+        .then((articles) => {
+          setArticles(articles.data);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [loggedIn]);
 
 
-
-  function handleSearch(keyWord) {
+  function handleSaveArticle(article) {
     setIsLoading(true);
-    newsApi.getNews(keyWord)
+    mainApi
+      .saveArticle(article)
+      .then((article) => {
+        setArticles(article);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+  function handleDeleteArticle(article) {
+    setIsLoading(true);
+    mainApi.deleteArticle(article._id)
+      .then(() => {
+        setArticles(
+          articles.filter((item) => {
+            return item._id !== article._id;
+          })
+        )
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleSearch(keyword) {
+    setIsLoading(true);
+    newsApi.getNews(keyword)
       .then((data) => {
-        setNews(data.articles);
+        const articles = data.articles.map((item) => ({ ...item, keyword }));
+        setNews(articles);
         setResults(data.totalResults);
       }
       )
@@ -165,12 +215,12 @@ function App() {
           <Switch>
 
             {/* <ProtectedRoute path='/saved-news' component={SavedNewsHeader} myPath={myPath} isLoggedIn={loggedIn} ></ProtectedRoute> */}
-            <ProtectedRoute exact path='/saved-news' component={SavedNews} myPath={myPath} isLoggedIn={loggedIn} onRouteClick={handleLoginClick} />
+            <ProtectedRoute exact path='/saved-news' component={SavedNews} myPath={myPath} isLoggedIn={loggedIn} onRouteClick={handleLoginClick} articles={articles} onTrashClick={handleDeleteArticle} />
 
             <Route path='/'>
               <SeachForm onSearch={handleSearch} />
               {isLoading && <Preloader />}
-              {results !== -1 && (results > 0 ? <Main myPath={myPath} isLoggedIn={loggedIn} news={news} /> : <NothingFound />)}
+              {results !== -1 && (results > 0 ? <Main myPath={myPath} isLoggedIn={loggedIn} news={news} onSaveClick={handleSaveArticle} /> : <NothingFound />)}
               <About />
             </Route>
 

@@ -4,6 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 const ProtectedRoute = ({ component: Component, onRouteClick, ...props }) => {
   useEffect(() => {
     if (!props.isLoggedIn) return () => onRouteClick();
+    return null;
   }, [onRouteClick, props.isLoggedIn]
   );
 

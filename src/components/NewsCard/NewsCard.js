@@ -5,15 +5,19 @@ import './NewsCard.css';
 import HoverHint from '../HoverHint/HoverHint';
 
 function News(props) {
-  const { newsCard, myPath, isLoggedIn } = props;
+  const { newsCard, myPath, isLoggedIn, onTrashClick, onSaveClick } = props;
   const [isHoverHintVisible, setIsHoverHintVisible] = React.useState(false)
   const [isMarked, setIsMarked] = React.useState(false);
   const isMain = (myPath.pathname === '/') ? true : false;
   const bookmarkClassName = `news-card__icon news-card__icon_mark ${isMarked ? 'news-card__icon_marked' : ''}`;
 
-  // function handleTrashClick() {
-  //   props.onTrashClick(newsCard);
-  // }
+  function handleTrashClick() {
+    onTrashClick(newsCard);
+  }
+
+  function handleSaveClick() {
+    onSaveClick(newsCard);
+  }
 
   function handleMarkClick() {
     if (isLoggedIn) {
@@ -28,13 +32,15 @@ function News(props) {
   return (
     <div className="news-card" >
       <div className="news-card__header">
-        {!isMain && <button type="submit" className="news-card__key-word" >{newsCard.keyWord}</button>}
+        {!isMain && <button type="submit" className="news-card__key-word" >{newsCard.keyword}</button>}
         {isHoverHintVisible && !(isMain && isLoggedIn) && <HoverHint myPath={myPath} />}
         {!isMain && <button type="submit" className="news-card__icon news-card__icon_trash"
-          // onClick={handleTrashClick} 
+          onClick={handleTrashClick}
           onMouseEnter={handleMouseToggle}
-          onMouseLeave={handleMouseToggle}></button>}
-        {isMain && <button type="submit" className={bookmarkClassName} onClick={handleMarkClick} onMouseEnter={handleMouseToggle} onMouseLeave={handleMouseToggle} ></button>}
+          onMouseLeave={handleMouseToggle}
+        // disabled={loading}
+        ></button>}
+        {isMain && <button type="submit" className={bookmarkClassName} onClick={handleMarkClick} onMouseEnter={handleMouseToggle} onMouseLeave={handleMouseToggle} onClick={handleSaveClick} ></button>}
       </div>
       <a href={newsCard.url} target='_blank' rel="noreferrer" className="news-card__link news-card__link_black">
         <div>

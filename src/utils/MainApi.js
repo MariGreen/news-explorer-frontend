@@ -1,4 +1,4 @@
-class Api {
+class MainApi {
   constructor({ baseUrl = {} }) {
     this.baseUrl = baseUrl;
     // this.headers = headers;
@@ -23,32 +23,38 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  createCard(data) {
-    return fetch(`${this.baseUrl}/cards`, {
+  getArticles() {
+    return fetch(`${this.baseUrl}/articles`, {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+      },
+    }).then(this._handleResponse);
+  }
+
+  saveArticle(article) {
+    const { keyword, title, description, publishedAt, source, url, urlToImage } = article;
+    return fetch(`${this.baseUrl}/articles`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json',
       },
       method: 'POST',
       body: JSON.stringify({
-        name: data.name,
-        link: data.link,
+        source: source.name,
+        keyword,
+        title,
+        description,
+        publishedAt,
+        url,
+        urlToImage,
       }),
     }).then(this._handleResponse);
   }
 
-  // changeLikeCardStatus(cardID, isLiked) {
-  //   return fetch(`${this.baseUrl}/cards/${cardID}/likes`, {
-  //     method: isLiked ? 'PUT' : 'DELETE',
-  //     headers: {
-  //       authorization: `Bearer ${localStorage.getItem('jwt')}`,
-  //       'Content-Type': 'application/json',
-  //     },      
-  //   }).then(this._handleResponse);
-  // }
-
-  deleteCard(cardId) {
-    return fetch(`${this.baseUrl}/cards/${cardId}`, {
+  deleteArticle(articleId) {
+    return fetch(`${this.baseUrl}/articles/${articleId}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -59,9 +65,9 @@ class Api {
 
 }
 
-const api = new Api({
+const mainApi = new MainApi({
   // baseUrl: 'https://api.mgreen.students.nomoreparties.space',
   baseUrl: 'http://localhost:3001',
 });
 
-export default api;
+export default mainApi;

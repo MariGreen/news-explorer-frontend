@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 import './NavBar.css';
 import logOutDark from '../../images/navbar_logout.svg';
 import logOutWhite from '../../images/navbar_logout_white.svg';
 
 
 const NavBar = (props) => {
+  const currentUser = useContext(CurrentUserContext);
 
   const history = useHistory();
 
@@ -32,7 +34,7 @@ const NavBar = (props) => {
         <li className={headerItemClassName}> <Link to='/' className={headerLinkClassName} >Главная</Link></li>
         {props.loggedIn ? <li className={headerLinkClassNameInvert}><Link className={headerLinkClassName} to='/saved-news'>Сохранённые статьи</Link></li> : null}
 
-        {props.loggedIn ? <li className={headerItemUserClassName}><button className={headerButtonUserClassName} onClick={signOut}>{props.userName} <img className='header__logout' src={isMain ? logOutWhite : logOutDark} alt='Выйти' /></button></li> : <li className={headerItemUserClassName}><button className={headerButtonUserClassName} onClick={props.onLoginClick}> Авторизоваться </button></li>}
+        {props.loggedIn ? <li className={headerItemUserClassName}><button className={headerButtonUserClassName} onClick={signOut}>{currentUser.name} <img className='header__logout' src={isMain ? logOutWhite : logOutDark} alt='Выйти' /></button></li> : <li className={headerItemUserClassName}><button className={headerButtonUserClassName} onClick={props.onLoginClick}> Авторизоваться </button></li>}
 
       </ul>
 
