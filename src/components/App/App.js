@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedPoute';
 import newsApi from '../../utils/NewsApi';
 import mainApi from '../../utils/MainApi';
@@ -29,7 +29,6 @@ function App() {
   const [isMenuPopupOpen, setIsMenuPopupOpen] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(false);
-  // const user = { name: "Грета Гарбо", email: "email@email.de" };
   const myPath = useLocation();
 
   const [news, setNews] = useState([]);
@@ -141,12 +140,14 @@ function App() {
     };
   });
 
+
   useEffect(() => {
     if (loggedIn) {
       setIsLoading(true);
       mainApi.getArticles()
         .then((articles) => {
           setArticles(articles.data);
+          // localStorage.setItem('news', JSON.stringify(articles.data));
         })
         .finally(() => {
           setIsLoading(false);
@@ -157,20 +158,62 @@ function App() {
     }
   }, [loggedIn]);
 
+  useEffect(() => {
+    const localStorageNews = JSON.parse(localStorage.getItem('news'));
+    if (localStorageNews.length > 0) {
+      console.log(news);
+      console.log(localStorageNews);
+      setNews(localStorageNews);
+      setResults(localStorageNews.length);
+    }
+    console.log(localStorageNews.length);
+    console.log(news);
+  }, []);
 
-  function handleSaveArticle(article) {
+  function handleSearch(keyword) {
+    if (!keyword) {
+      return;
+    }
     setIsLoading(true);
-    mainApi
-      .saveArticle(article)
-      .then((article) => {
-        setArticles(article);
+    newsApi.getNews(keyword)
+      .then((data) => {
+        const news = data.articles.map((item) => ({ ...item, keyword }));
+        setNews(news);
+        setResults(data.totalResults);
+        console.log(news);
+      })
+      .then(() => {
+        localStorage.setItem('news', JSON.stringify(news));
+        console.log(news);
       })
       .finally(() => {
         setIsLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+  }
+
+
+  function handleSaveArticle(article) {
+    setIsLoading(true);
+
+    const savedNews = articles.find((i) => i.title === article.title && i.publishAt === article.publishAt);
+    if (!savedNews) {
+      mainApi.saveArticle(article)
+        .then((article) => {
+          // setArticles([article.data, ...articles]);
+          mainApi.getArticles()
+            .then((articles) => {
+              setArticles(articles.data);
+            })
+        })
+        .finally(() => {
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      handleDeleteArticle(savedNews);
+    }
   }
 
 
@@ -192,19 +235,7 @@ function App() {
       });
   }
 
-  function handleSearch(keyword) {
-    setIsLoading(true);
-    newsApi.getNews(keyword)
-      .then((data) => {
-        const articles = data.articles.map((item) => ({ ...item, keyword }));
-        setNews(articles);
-        setResults(data.totalResults);
-      }
-      )
-      .finally(() => {
-        setIsLoading(false);
-      })
-  }
+
 
   return (
     <div className="page page__container">

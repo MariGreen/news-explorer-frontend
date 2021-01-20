@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import Preloader from '../Preloader/Preloader';
-// import { InitialLoadingContext } from '../../context/InitialLoadingContext';
-import { CurrentUserContext } from '../../context/CurrentUserContext';
-import News from '../NewsCard/NewsCard'
-// import { news } from '../../constants/cards';
+import Preloader from '../Preloader/Preloader';
+import { LoadingContext } from '../../context/LoadingContext';
+import News from '../NewsCard/NewsCard';
 import './Main.css';
 
 
 function Main(props) {
 
-  // const initialLoading = React.useContext(InitialLoadingContext);
-  const currentUser = useContext(CurrentUserContext);
+  const isLoading = React.useContext(LoadingContext);
+  // const currentUser = useContext(CurrentUserContext);
 
   const { news } = props;
   const [numberOfNews, setNumberOfNews] = useState(3);
@@ -26,7 +24,7 @@ function Main(props) {
 
   return (
     <div className="content">
-      {/* {initialLoading && <Preloader />} */}
+      {isLoading && <Preloader />}
       <section className="result">
         <div className="result__articles">
           <h2 className="result__title"> Результаты поиска</h2>

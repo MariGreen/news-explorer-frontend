@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // import { savedNews } from '../../constants/savedNews';
 import PropTypes from 'prop-types';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 // import Preloader from '../Preloader/Preloader';
 // import { InitialLoadingContext } from '../../context/InitialLoadingContext';
-import { CurrentUserContext } from '../../context/CurrentUserContext';
 import News from '../NewsCard/NewsCard';
 import './SavedNews.css';
 
@@ -16,7 +15,7 @@ function SavedNews(props) {
   return (
 
     <div className="content" >
-      <SavedNewsHeader isLoggedIn={props.loggedIn} />
+      <SavedNewsHeader isLoggedIn={props.loggedIn} articles={props.articles} />
       <section className="result">
         {/* {initialLoading && <Preloader />} */}
         <div className="result__articles">
