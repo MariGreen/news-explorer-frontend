@@ -46,7 +46,6 @@ function App() {
     if (jwt) {
       auth.getContent(jwt)
         .then((res) => {
-
           if (res) {
             if (res === 401) {
               localStorage.removeItem(jwt);
@@ -57,7 +56,6 @@ function App() {
                 name: res.data.name,
               });
               closeAllPopups();
-              // history.push('/');
             }
           }
         })
@@ -65,6 +63,7 @@ function App() {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => tokenCheck(), []);
 
 
@@ -79,6 +78,9 @@ function App() {
 
   function onSignOut() {
     setLoggedIn(false);
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('news');
+    setResults(-1);
   }
 
   function handleSwitchToLogin() {
@@ -142,7 +144,7 @@ function App() {
 
   useEffect(() => {
     const localStorageNews = JSON.parse(localStorage.getItem('news'));
-    if (localStorageNews.length > 0) {
+    if (localStorageNews && localStorageNews.length > 0) {
       setNews(localStorageNews);
       setResults(localStorageNews.length);
     }
@@ -167,14 +169,12 @@ function App() {
   }, [loggedIn]);
 
 
-
-
-
-  function handleSearch(keyword) {
-    if (!keyword) {
+  function handleSearch(word) {
+    if (!word) {
       return;
     }
     setIsLoading(true);
+    const keyword = word[0].toUpperCase() + word.substr(1).toLowerCase();
     setNews([]);
     newsApi.getNews(keyword)
       .then((data) => {

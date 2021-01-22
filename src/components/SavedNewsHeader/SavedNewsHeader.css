@@ -1,6 +1,6 @@
 .saved-news {
-  /* width: calc(100% - 2*104px); */
-  width: 100%;
+  width: calc(100% - 2*104px);
+  /* width: 100%; */
   padding: 0px 104px;
   margin: 0 auto;
   display: flex;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Preloader from '../Preloader/Preloader';
 import { LoadingContext } from '../../context/LoadingContext';
+// import { CurrentUserContext } from '../../context/CurrentUserContext';
 import News from '../NewsCard/NewsCard';
 import './Main.css';
 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import PropTypes from 'prop-types';
 import Navbar from '../NavBar/NavBar';
-// import ProtectedRoute from './ProtectedRoute';
 import './Header.css';
 
 function Header(props) {
