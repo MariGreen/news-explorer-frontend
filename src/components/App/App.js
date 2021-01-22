@@ -140,6 +140,15 @@ function App() {
     };
   });
 
+  useEffect(() => {
+    const localStorageNews = JSON.parse(localStorage.getItem('news'));
+    if (localStorageNews.length > 0) {
+      setNews(localStorageNews);
+      setResults(localStorageNews.length);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   useEffect(() => {
     if (loggedIn) {
@@ -147,7 +156,6 @@ function App() {
       mainApi.getArticles()
         .then((articles) => {
           setArticles(articles.data);
-          // localStorage.setItem('news', JSON.stringify(articles.data));
         })
         .finally(() => {
           setIsLoading(false);
@@ -158,36 +166,28 @@ function App() {
     }
   }, [loggedIn]);
 
-  useEffect(() => {
-    const localStorageNews = JSON.parse(localStorage.getItem('news'));
-    if (localStorageNews.length > 0) {
-      console.log(news);
-      console.log(localStorageNews);
-      setNews(localStorageNews);
-      setResults(localStorageNews.length);
-    }
-    console.log(localStorageNews.length);
-    console.log(news);
-  }, []);
+
+
+
 
   function handleSearch(keyword) {
     if (!keyword) {
       return;
     }
     setIsLoading(true);
+    setNews([]);
     newsApi.getNews(keyword)
       .then((data) => {
         const news = data.articles.map((item) => ({ ...item, keyword }));
         setNews(news);
         setResults(data.totalResults);
-        console.log(news);
-      })
-      .then(() => {
         localStorage.setItem('news', JSON.stringify(news));
-        console.log(news);
       })
       .finally(() => {
         setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 
@@ -199,7 +199,6 @@ function App() {
     if (!savedNews) {
       mainApi.saveArticle(article)
         .then((article) => {
-          // setArticles([article.data, ...articles]);
           mainApi.getArticles()
             .then((articles) => {
               setArticles(articles.data);
