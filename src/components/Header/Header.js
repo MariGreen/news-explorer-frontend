@@ -28,8 +28,12 @@ Header.propTypes = {
   userName: PropTypes.string,
   onLoginClick: PropTypes.func.isRequired,
   onSignOut: PropTypes.func.isRequired,
-  usermyPath: PropTypes.string,
+  myPath: PropTypes.object,
   isPopupOpen: PropTypes.bool.isRequired,
+  isMenuPopupOpen: PropTypes.bool.isRequired,
+  isLoginPopupOpen: PropTypes.bool,
+  isRegisterPopupOpen: PropTypes.bool,
+  isResultPopupOpen: PropTypes.bool,
   onMenuOpen: PropTypes.func.isRequired,
 }
 

@@ -1,14 +1,13 @@
-import React from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import timeConverter from '../../utils/timeConverter';
 import './NewsCard.css';
 import HoverHint from '../HoverHint/HoverHint';
 
 function News(props) {
+
   const { newsCard, myPath, isLoggedIn, onTrashClick, onSaveClick } = props;
-  const [isHoverHintVisible, setIsHoverHintVisible] = React.useState(false)
-  const [isMarked, setIsMarked] = React.useState(false);
+  const [isHoverHintVisible, setIsHoverHintVisible] = useState(false)
+  const [isMarked, setIsMarked] = useState(false);
   const isMain = (myPath.pathname === '/') ? true : false;
   const bookmarkClassName = `news-card__icon news-card__icon_mark ${isMarked ? 'news-card__icon_marked' : ''}`;
 
@@ -34,8 +33,6 @@ function News(props) {
     setIsHoverHintVisible(!isHoverHintVisible);
   }
 
-
-
   return (
     <div className="news-card" >
       <div className="news-card__header">
@@ -45,9 +42,8 @@ function News(props) {
           onClick={handleTrashClick}
           onMouseEnter={handleMouseToggle}
           onMouseLeave={handleMouseToggle}
-        // disabled={loading}
         ></button>}
-        {isMain && <button type="submit" className={bookmarkClassName} onClick={handleClick} onMouseEnter={handleMouseToggle} onMouseLeave={handleMouseToggle} ></button>}
+        {isMain && <button type="submit" className={bookmarkClassName} onClick={handleClick} onMouseEnter={handleMouseToggle} onMouseLeave={handleMouseToggle}></button>}
       </div>
       <a href={newsCard.url} target='_blank' rel="noreferrer" className="news-card__link news-card__link_black">
         <div>
@@ -68,7 +64,8 @@ function News(props) {
 News.propTypes = {
   loggedIn: PropTypes.bool,
   News: PropTypes.node,
-  myPath: PropTypes.object,
+  // myPath: PropTypes.object,
+  // onSaveClick: PropTypes.func
 }
 
 export default News;

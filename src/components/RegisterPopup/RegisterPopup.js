@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-// import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { PreloaderContext } from '../../context/PreloaderContext';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import './RegisterPopup.css';
-// import * as auth from '../../utils/auth';
 
 function RegisterPopup(props) {
 
@@ -133,8 +131,7 @@ function RegisterPopup(props) {
 
 
       <button type="submit" className="popup__save-button" disabled={isSubmitDisabled} >
-        {/* {loading ? `Регистрация...` : `Зарегистрироваться`} */} Зарегистрироваться
-      </button>
+        {loading ? `Регистрация...` : `Зарегистрироваться`}</button>
       <div className='popup__toggle'>
         <p className='popup__toggle-item'>или <span className='popup__toggle-item popup__toggle-item_link' onClick={props.onLoginClick}>Войти </span></p>
       </div>

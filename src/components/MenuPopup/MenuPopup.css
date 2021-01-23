@@ -85,3 +85,17 @@
   }  
 }
 
+@media screen and (max-width: 440px) {
+  .header__button_mobile {    
+   padding: 15px 2em 18px 2em;
+   display: inline-block;
+   vertical-align: middle;   
+   text-align: center;  
+ }
+ 
+ .header__logout {
+   margin-top: 0px;
+   margin-bottom: -5px;
+ }
+}
+

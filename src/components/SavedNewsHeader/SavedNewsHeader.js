@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import './SavedNewsHeader.css';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
@@ -10,13 +11,11 @@ function SavedNewsHeader(props) {
   }
 
   const keywords = props.articles.map(handleMap);
-  console.log(keywords);// 'массив слов'
 
   const popularity = keywords.reduce(function (acc, elem) {
     acc[elem] = (acc[elem] || 0) + 1;
     return acc;
   }, {});
-  console.log(popularity);// 'массив слов c количеством'
 
   const words = Object.entries(popularity).map((elem) => ({
     key: elem[0],
@@ -26,19 +25,13 @@ function SavedNewsHeader(props) {
   const sortedWords = words.sort(function (a, b) {
     return b.quantity - a.quantity
   })
-  console.log(sortedWords);//массив объектов: сортированные слова + количество
 
-  const mostPopularWords = sortedWords.map((elem) => elem.key);//слова с количеством
-  console.log(mostPopularWords);//массив слов, отсортированный по частоте
+  const mostPopularWords = sortedWords.map((elem) => elem.key);
 
   const finishQuantity = mostPopularWords.length - 2;
 
   const finishInfo = mostPopularWords.length <= 3 ? mostPopularWords.join(", ") : `${mostPopularWords.slice(0, 2).join(", ")}`
 
-  function toFixCase(str) {
-    if (str) return str[0].toUpperCase() + str.substr(1).toLowerCase();
-  }
-  console.log(toFixCase('555'));
 
   function setArticlesQuantity(item) {
     let finishArticlesInfo;
@@ -84,7 +77,10 @@ function SavedNewsHeader(props) {
     </section>
 
   )
+}
 
+SavedNewsHeader.propTypes = {
+  articles: PropTypes.array
 }
 
 export default SavedNewsHeader;

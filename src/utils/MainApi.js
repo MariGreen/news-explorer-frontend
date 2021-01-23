@@ -1,7 +1,6 @@
 class MainApi {
   constructor({ baseUrl = {} }) {
     this.baseUrl = baseUrl;
-    // this.headers = headers;
   }
 
   _handleResponse(res) {

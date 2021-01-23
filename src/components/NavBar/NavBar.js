@@ -46,7 +46,8 @@ NavBar.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
   onSignOut: PropTypes.func.isRequired,
-  userName: PropTypes.string,
+  onLoginClick: PropTypes.func,
+  myPath: PropTypes.object
 }
 
 export default NavBar;

@@ -35,7 +35,8 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [results, setResults] = useState(-1);
   const [currentUser, setCurrentUser] = useState({});
-  // const history = useHistory();
+  const [isNoKeyword, setIsNoKeyword] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   function handleLoginClick() {
     setIsLoginPopupOpen(true);
@@ -69,12 +70,16 @@ function App() {
 
   const handleLogin = (email, password) => auth.authorize(email, password)
     .then((data) => {
+      setIsLoading(true)
       if (!data) {
         throw new Error({ message: 'Токен не передан или передан не в том формате' });
       } else {
         tokenCheck();
       }
-    }).catch((err) => console.log(err));
+    }).finally(() => {
+      setIsLoading(false);
+    })
+    .catch((err) => console.log(err));
 
   function onSignOut() {
     setLoggedIn(false);
@@ -89,6 +94,7 @@ function App() {
   };
 
   function handleSubmitRegister(email, password, name) {
+    setIsLoading(true);
     auth.register(email, password, name).then((response) => {
       if (response.status === 201) {
         setIsRegisterPopupOpen(false);
@@ -97,6 +103,8 @@ function App() {
       } else {
         throw new Error('Something went wrong');
       }
+    }).finally(() => {
+      setIsLoading(false);
     })
       .catch((err) => {
         console.log(err);
@@ -170,10 +178,14 @@ function App() {
 
 
   function handleSearch(word) {
+    setIsError(false);
     if (!word) {
+      setIsNoKeyword(true);
+      setResults(0);
       return;
     }
     setIsLoading(true);
+    setIsNoKeyword(false);
     const keyword = word[0].toUpperCase() + word.substr(1).toLowerCase();
     setNews([]);
     newsApi.getNews(keyword)
@@ -188,13 +200,13 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setResults(0);
+        setIsError(true);
       })
   }
 
 
   function handleSaveArticle(article) {
-    setIsLoading(true);
-
     const savedNews = articles.find((i) => i.title === article.title && i.publishAt === article.publishAt);
     if (!savedNews) {
       mainApi.saveArticle(article)
@@ -203,9 +215,6 @@ function App() {
             .then((articles) => {
               setArticles(articles.data);
             })
-        })
-        .finally(() => {
-          setIsLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -217,7 +226,6 @@ function App() {
 
 
   function handleDeleteArticle(article) {
-    setIsLoading(true);
     mainApi.deleteArticle(article._id)
       .then(() => {
         setArticles(
@@ -225,9 +233,6 @@ function App() {
             return item._id !== article._id;
           })
         )
-      })
-      .finally(() => {
-        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -244,13 +249,14 @@ function App() {
 
           <Switch>
 
-            {/* <ProtectedRoute path='/saved-news' component={SavedNewsHeader} myPath={myPath} isLoggedIn={loggedIn} ></ProtectedRoute> */}
-            <ProtectedRoute exact path='/saved-news' component={SavedNews} myPath={myPath} isLoggedIn={loggedIn} onRouteClick={handleLoginClick} articles={articles} onTrashClick={handleDeleteArticle} />
+            <ProtectedRoute exact path='/saved-news' component={SavedNews} myPath={myPath} isLoggedIn={loggedIn}
+              onRouteClick={handleLoginClick}
+              articles={articles} onTrashClick={handleDeleteArticle} />
 
             <Route path='/'>
               <SeachForm onSearch={handleSearch} />
               {isLoading && <Preloader />}
-              {results !== -1 && (results > 0 ? <Main myPath={myPath} isLoggedIn={loggedIn} news={news} onSaveClick={handleSaveArticle} /> : <NothingFound />)}
+              {results !== -1 && (results > 0 ? (!isLoading && <Main myPath={myPath} isLoggedIn={loggedIn} news={news} onSaveClick={handleSaveArticle} />) : <NothingFound isNoKeyword={isNoKeyword} isError={isError} />)}
               <About />
             </Route>
 
@@ -281,8 +287,11 @@ function App() {
 
             <MenuPopup
               isOpen={isMenuPopupOpen}
-              onAuthClick={handleSwitchToLogin}>
+              onAuthClick={handleSwitchToLogin}
+              loggedIn={loggedIn}
+              onSignOut={onSignOut}>
             </MenuPopup>
+
           </section>
         </CurrentUserContext.Provider>
       </PreloaderContext.Provider>

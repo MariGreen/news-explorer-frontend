@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import '../LoginPopup/LoginPopup.css';
-// import { LoadingContext } from '../contexts/LoadingContext';
+import { PreloaderContext } from '../../context/PreloaderContext';
 
 function LoginPopup(props) {
   React.useEffect(() => {
@@ -12,6 +12,7 @@ function LoginPopup(props) {
     });
   }, [props.isOpen]);
 
+  const isLoading = useContext(PreloaderContext);
 
   const [formValues, setFormValues] = useState({
     email: "",
@@ -101,9 +102,9 @@ function LoginPopup(props) {
         </div>
       </fieldset>
 
-      <button type="submit" className="popup__save-button" disabled={isSubmitDisabled}>
-        {/* {loading ? `Вход...` : `Войти`} */} Войти
-      </button>
+      <button type="submit" className="popup__save-button"
+        disabled={isSubmitDisabled}>
+        {isLoading ? 'Вход...' : 'Войти'}</button>
       <div className='popup__toggle'>
         <p className='popup__toggle-item'>или <span className='popup__toggle-item popup__toggle-item_link' onClick={props.onRegisterClick}>Зарегистрироваться</span></p>
       </div>
@@ -115,6 +116,7 @@ LoginPopup.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onRegisterClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default LoginPopup;

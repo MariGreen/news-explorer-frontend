@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Preloader from '../Preloader/Preloader';
-import { LoadingContext } from '../../context/LoadingContext';
+import { PreloaderContext } from '../../context/PreloaderContext';
 // import { CurrentUserContext } from '../../context/CurrentUserContext';
 import News from '../NewsCard/NewsCard';
 import './Main.css';
@@ -9,7 +9,7 @@ import './Main.css';
 
 function Main(props) {
 
-  const isLoading = React.useContext(LoadingContext);
+  const isLoading = React.useContext(PreloaderContext);
   // const currentUser = useContext(CurrentUserContext);
 
   const { news } = props;
@@ -54,6 +54,8 @@ function Main(props) {
 Main.propTypes = {
   myPath: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
+  onSaveClick: PropTypes.func.isRequired,
+  news: PropTypes.array,
 }
 
 export default Main;
