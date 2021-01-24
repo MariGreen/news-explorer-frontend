@@ -65,8 +65,9 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // baseUrl: 'https://api.mgreen.students.nomoreparties.space',
-  baseUrl: 'http://localhost:3001',
+  baseUrl: 'https://api.mgreen.students.nomoredomains.rocks',
+  //чет я затупила со ссылкой, извините.
+  // baseUrl: 'http://localhost:3001',
 });
 
 export default mainApi;
