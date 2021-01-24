@@ -1,0 +1,147 @@
+.header__navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;   
+  height: 80px;
+  width: 100%;
+}
+
+.header__nav {  
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
+
+.header__item {  
+  margin-left: 0;
+  margin-left: 32px;
+  list-style-type: none;  
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;   
+}
+
+.header__item_dark {
+  color: #1A1B22;
+}
+
+.heder__item_light {  
+  color: #fff;
+}
+
+.header__item_underline {
+  border-bottom: 3px solid;
+}
+
+.header__item_underline-light {
+  border-bottom: 3px solid #fff;
+}
+
+.header__button {  
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: 100px;  
+  display: flex;
+  height: 48px;
+  padding: 12px 15px;
+  align-items: center;  
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+}
+
+.header__button_dark {
+  color: #1A1B22;
+  border: 1px solid #1A1B22;
+}
+
+.header__button_light {
+  color:#fff;
+  border: 1px solid #fff;
+}
+
+.header__button:hover {
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
+  opacity: 0.8;
+}
+
+.header__logout {
+  width: 24px;
+  height: 24px;
+  margin-left: 6px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: #1A1B22;  
+}
+
+.header__link_light {
+  text-decoration: none;
+  color:#fff;  
+}
+
+.header__link:visited {
+  color:#1A1B22;  
+}
+
+.header__link_light:visited {
+  color:#fff;  
+}
+
+.header__link:hover {
+  cursor: Url('../../images/coursor_pointer.svg'), pointer;
+  opacity: 0.8;
+}
+
+.header__link_loggedIn {
+  color:#A9A9A9;
+}
+
+/* Планшетник */
+
+@media screen and (max-width: 768px) and (min-width: 641px) {
+  .header__navbar {
+    max-height: 66px;    
+ }
+}
+
+@media screen and (max-width: 768px) and (min-width: 641px) {
+  .header__item {
+    font-size: 16px;
+    line-height: 1.5;   
+ }
+}
+
+@media screen and (max-width: 768px) and (min-width: 641px){
+  .header__button {
+    font-size: 16px;
+    line-height: 1.5;   
+    border: none;
+ }
+}
+
+
+/* Мобильный */
+
+@media screen and (max-width: 640px) {
+  .header__navbar {
+   display: none;    
+ }
+}
+
+
+
+
